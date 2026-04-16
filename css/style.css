@@ -298,26 +298,24 @@ p:last-child{
 }
 .main-navigation ul>li:hover .sub-menu{
     display: block;
-    /*opacity: 1;*/
-    transition: all 0.5s ease;
+    transition: all 0.25s ease;
 }
 .main-navigation .sub-menu{
     position: absolute;
     top: 36px;
     left: 0;
-    width: 400px;
+    width: 560px;
     background-color: #000;
-    z-index: 9;
-    padding: 0 32px;
+    z-index: 999;
+    padding: 0 28px;
     display: none;
-    /*opacity: 0;*/
-    transition: all 0.5s ease;
+    transition: all 0.25s ease;
 }
 .main-navigation .sub-menu .col-md-6:first-child{
-    border-right: 1px solid rgb(202 201 201 / 40%);
+    border-right: 1px solid rgba(202,201,201,0.25);
 }
 .main-navigation .sub-menu .col-md-6:last-child .sub-menu-heading,
-.main-navigation .sub-menu .col-md-6:last-child ul{  
+.main-navigation .sub-menu .col-md-6:last-child ul{
     padding-right: 12px;
 }
 .main-navigation .sub-menu .col-md-6:last-child .sub-menu-heading,
@@ -335,16 +333,16 @@ p:last-child{
     display: none;
 }
 .main-navigation .sub-menu .sub-menu-heading{
-    color: #fff;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 16px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 18px;
     margin-bottom: 12px;
-    padding-top: 24px;
+    padding-top: 12px;
 }
 .main-navigation .sub-menu ul{
     display: block;
-    padding-bottom: 24px;
+    padding-bottom: 12px;
 }
 .main-navigation .sub-menu ul li{
     padding-right: 0;
@@ -354,21 +352,21 @@ p:last-child{
     display: none;
 }
 .main-navigation .sub-menu ul li{
-    padding-bottom: 12px;
+    padding-bottom: 6px;
 }
 .main-navigation .sub-menu ul li:last-child{
     padding-bottom: 0;
 }
 .main-navigation .sub-menu ul li a{
-    font-size: 11px;
-    line-height: 16px;
+    font-size: 12px;
+    line-height: 18px;
     color: #c9caca;
-    font-weight: normal;
-    transition: all 0.5s ease;
+    font-weight: 400;
+    transition: all 0.2s ease;
 }
 .main-navigation .sub-menu ul li a:hover{
-    color: #fff;
-    transition: all 0.5s ease;
+    color: #ffffff;
+    transition: all 0.2s ease;
 }
 
 /*Footer CSS*/
