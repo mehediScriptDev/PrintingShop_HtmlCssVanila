@@ -251,6 +251,7 @@ p:last-child{
     display: flex;
     align-items: center;
     justify-content: end;
+    flex-wrap: wrap;
 }
 .main-navigation ul li{
     position: relative;
@@ -314,11 +315,67 @@ p:last-child{
     z-index: 999;
     padding: 0 28px;
     /* visually start offset to the right, slide into its left-anchored position */
-    display: block;
+        display: none;
     opacity: 0;
     transform: translateX(24px);
     pointer-events: none;
     transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Responsive header: stack nav on small screens and avoid overflow */
+@media (max-width: 991.98px) {
+    .main-navigation ul {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        width: 100%;
+        margin-top: 12px;
+    }
+    .main-navigation ul li{
+        margin-right: 0;
+        padding: 8px 0;
+        width: 100%;
+    }
+    .main-navigation ul li a{
+        display: block;
+        padding: 12px 16px;
+    }
+    .main-navigation ul li:first-child a{
+        padding: 12px 16px;
+    }
+    .main-navigation .sub-menu{
+        position: static;
+        width: 100%;
+        padding: 12px 16px;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+        display: none;
+        background-color: #000;
+    }
+    .main-navigation ul li.open .sub-menu{
+        display: block;
+    }
+    .main-navigation .sub-menu .col-md-6:first-child{
+        border-right: none;
+        padding-right: 0;
+    }
+    .main-navigation .sub-menu .col-md-6:last-child .sub-menu-heading,
+    .main-navigation .sub-menu .col-md-6:last-child ul{
+        padding-left: 0;
+    }
+    .main-navigation .sub-menu .sub-menu-heading{
+        padding-top: 8px;
+    }
+    .main-navigation ul>li:hover .sub-menu{
+        /* disable hover-triggered reveal on touch devices */
+        display: none;
+    }
+    .main-logo img{
+        max-width: 100%;
+        height: auto;
+    }
 }
 .main-navigation .sub-menu .col-md-6:first-child{
     border-right: 1px solid rgba(202,201,201,0.25);
