@@ -126,6 +126,41 @@ $(document).ready(function () {
 	  $('.main-navigation ul').slideToggle(300);
 	});
 
+	// Mobile submenu toggle (tap-to-open) and outside click close
+	$('.main-navigation').on('click', '.li-has-sub-menu > a', function(e) {
+	  if ($(window).width() < 992) {
+	    e.preventDefault();
+	    var $li = $(this).parent();
+	    if ($li.hasClass('open')) {
+	      $li.removeClass('open').find('.sub-menu').first().slideUp(200);
+	    } else {
+	      // close sibling submenus
+	      $li.siblings('.li-has-sub-menu.open').removeClass('open').find('.sub-menu').slideUp(200);
+	      $li.addClass('open').find('.sub-menu').first().slideDown(200);
+	    }
+	  }
+	});
+
+	// Close open submenu when clicking outside the navigation (mobile)
+	$(document).on('click', function(e) {
+	  if ($(window).width() < 992) {
+	    if (!$(e.target).closest('.main-navigation').length) {
+	      $('.main-navigation .li-has-sub-menu.open').removeClass('open').find('.sub-menu').slideUp(200);
+	    }
+	  }
+	});
+
+	// Keep nav visibility consistent on resize
+	$(window).on('resize', function() {
+	  if ($(window).width() >= 992) {
+	    $('.main-navigation ul').show();
+	    $('.main-navigation .li-has-sub-menu .sub-menu').removeAttr('style');
+	    $('.main-navigation .li-has-sub-menu').removeClass('open');
+	  } else {
+	    $('.main-navigation ul').hide();
+	  }
+	});
+
   // Menu List 
 	$('.toggle-list').on('click', function() {
 	  $('.all-categories-menu').slideToggle(300);

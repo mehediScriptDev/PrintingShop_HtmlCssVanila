@@ -48,6 +48,7 @@ hr {
     border-top: 1px solid #cccccc;
     margin: 1em 0;
     padding: 0;
+    opacity: 1;
 }
 img{
   object-fit: cover;
@@ -61,7 +62,7 @@ label{
 input{
     margin-bottom: 24px;    
 }
-input[type=text], select, textarea {
+input[type=text], input[type=email], select, textarea {
     vertical-align: middle;
     padding: 8px 12px;
     width: 100%;
@@ -104,8 +105,11 @@ html, body {
   height: 100%;
   margin: 0;
 }
+html {
+  scroll-behavior: smooth;
+}
 body{
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-weight: 400;
     background-color: #f7f8f8;
     color: #000;
@@ -114,9 +118,17 @@ body{
     margin-bottom: 16px;
 }
 h1, h2, h3, h4, h5, h6{
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: #000;
 }
+.fonts-loading body {
+    opacity: 0.99; /* Small opacity change to prevent FOUT */
+}
+
+.fonts-loaded body {
+    opacity: 1;
+}
+
 p{
     color: #000;
     font-size: 16px;
@@ -134,10 +146,10 @@ p:last-child{
     padding: 48px 0;
 }
 .section-padding{
-    padding: 96px 0;
+    padding: 60px 0;
 }
 .section-padding-bottom{
-    padding-bottom: 96px;
+    padding-bottom: 60px;
 }
 .seciton-head{
     margin-bottom: 48px;
@@ -222,7 +234,7 @@ p:last-child{
 }
 .section-inner-page-banner{
     background-color: #f5f6f5;
-    padding: 40px 0;
+    padding: 40px 0 0 0;
 }
 .section-inner-page-banner h1{
     text-transform: uppercase;
@@ -238,9 +250,20 @@ p:last-child{
 }
 
 /*Header CSS*/
+.body-spacing{
+    padding-top: 150px;
+}
 .header{
     background: #115bbb;
     padding: 12px 0 32px;
+    transition: all 0.5s ease;
+}
+.header.fixed{    
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    transition: all 0.5s ease;
 }
 .header p a{
     font-weight: bold;
@@ -251,7 +274,6 @@ p:last-child{
     display: flex;
     align-items: center;
     justify-content: end;
-    flex-wrap: wrap;
 }
 .main-navigation ul li{
     position: relative;
@@ -294,94 +316,31 @@ p:last-child{
 }
 .main-navigation ul li a{
     font-weight: bold;
-    font-size: 13px;
-    line-height: 20px;
+    font-size: 16px;
+    line-height: 24px;
 }
 .main-navigation ul>li:hover .sub-menu{
-    /* show and animate into view from the right */
     display: block;
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-    transition: transform 0.25s ease, opacity 0.25s ease;
+    /*opacity: 1;*/
+    transition: all 0.5s ease;
 }
 .main-navigation .sub-menu{
     position: absolute;
     top: 36px;
     left: 0;
-    right: auto;
-    width: 560px;
+    width: 400px;
     background-color: #000;
-    z-index: 999;
-    padding: 0 28px;
-    /* visually start offset to the right, slide into its left-anchored position */
-        display: none;
-    opacity: 0;
-    transform: translateX(24px);
-    pointer-events: none;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-/* Responsive header: stack nav on small screens and avoid overflow */
-@media (max-width: 991.98px) {
-    .main-navigation ul {
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-start;
-        width: 100%;
-        margin-top: 12px;
-    }
-    .main-navigation ul li{
-        margin-right: 0;
-        padding: 8px 0;
-        width: 100%;
-    }
-    .main-navigation ul li a{
-        display: block;
-        padding: 12px 16px;
-    }
-    .main-navigation ul li:first-child a{
-        padding: 12px 16px;
-    }
-    .main-navigation .sub-menu{
-        position: static;
-        width: 100%;
-        padding: 12px 16px;
-        transform: none;
-        opacity: 1;
-        pointer-events: auto;
-        display: none;
-        background-color: #000;
-    }
-    .main-navigation ul li.open .sub-menu{
-        display: block;
-    }
-    .main-navigation .sub-menu .col-md-6:first-child{
-        border-right: none;
-        padding-right: 0;
-    }
-    .main-navigation .sub-menu .col-md-6:last-child .sub-menu-heading,
-    .main-navigation .sub-menu .col-md-6:last-child ul{
-        padding-left: 0;
-    }
-    .main-navigation .sub-menu .sub-menu-heading{
-        padding-top: 8px;
-    }
-    .main-navigation ul>li:hover .sub-menu{
-        /* disable hover-triggered reveal on touch devices */
-        display: none;
-    }
-    .main-logo img{
-        max-width: 100%;
-        height: auto;
-    }
+    z-index: 9;
+    padding: 0 32px;
+    display: none;
+    /*opacity: 0;*/
+    transition: all 0.5s ease;
 }
 .main-navigation .sub-menu .col-md-6:first-child{
-    border-right: 1px solid rgba(202,201,201,0.25);
+    border-right: 1px solid rgb(202 201 201 / 40%);
 }
 .main-navigation .sub-menu .col-md-6:last-child .sub-menu-heading,
-.main-navigation .sub-menu .col-md-6:last-child ul{
+.main-navigation .sub-menu .col-md-6:last-child ul{  
     padding-right: 12px;
 }
 .main-navigation .sub-menu .col-md-6:last-child .sub-menu-heading,
@@ -399,16 +358,16 @@ p:last-child{
     display: none;
 }
 .main-navigation .sub-menu .sub-menu-heading{
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 18px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
     margin-bottom: 12px;
-    padding-top: 12px;
+    padding-top: 24px;
 }
 .main-navigation .sub-menu ul{
     display: block;
-    padding-bottom: 12px;
+    padding-bottom: 24px;
 }
 .main-navigation .sub-menu ul li{
     padding-right: 0;
@@ -418,32 +377,32 @@ p:last-child{
     display: none;
 }
 .main-navigation .sub-menu ul li{
-    padding-bottom: 6px;
+    padding-bottom: 12px;
 }
 .main-navigation .sub-menu ul li:last-child{
     padding-bottom: 0;
 }
 .main-navigation .sub-menu ul li a{
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 11px;
+    line-height: 16px;
     color: #c9caca;
-    font-weight: 400;
-    transition: all 0.2s ease;
+    font-weight: normal;
+    transition: all 0.5s ease;
 }
 .main-navigation .sub-menu ul li a:hover{
-    color: #ffffff;
-    transition: all 0.2s ease;
+    color: #fff;
+    transition: all 0.5s ease;
 }
 
 /*Footer CSS*/
 .footer{
     background-color: #115bbb;
-    padding: 32px 0;
+    padding: 48px 0;
 }
 .footer p{
     color: #fff;
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 24px;
 }
 .footer-navigation li{
     border-right: 1.5px solid rgb(255 255 255 / 25%);
@@ -452,8 +411,8 @@ p:last-child{
 }
 .footer-navigation li a{
     text-transform: uppercase;
-    font-size: 13px;
-    line-height: 20px;
+    font-size: 16px;
+    line-height: 24px;
 }
 .footer-navigation li a:hover{
     color: #000;
@@ -621,8 +580,11 @@ p:last-child{
 .all-categories-heading span img{
     cursor: pointer;
 }
+.all-categories-about-us .all-categories-menu{
+    display: none;
+}
 .all-categories-menu ul{
-    padding-top: 32px;
+    padding-top: 12px;
 }
 .all-categories-menu ul li{
     position: relative;
@@ -635,6 +597,7 @@ p:last-child{
 }
 .all-categories-menu ul li:last-child{
     border-bottom: 0;
+    margin-bottom: 0;
 }
 .all-categories-menu ul li a{
     display: flex;
@@ -745,7 +708,7 @@ p:last-child{
 }
 .highlights-sticky{
     position: sticky;
-    top: 0;
+    top: 75px;
     height: 100vh;
     background: transparent;
     display: flex;
@@ -755,7 +718,7 @@ p:last-child{
     overflow: hidden;
 }
 .highlights-images{
-    flex: 1 1 65%;
+    flex: 1 1 60%;
     overflow: hidden;
     position: relative;
 }
@@ -770,8 +733,7 @@ p:last-child{
     transform: translate(50%, -50%) scale(1.05);
     transition: transform 0.5s ease-out, opacity 0.5s ease-out;
     z-index: 0;
-    padding: 100px;
-    padding-left: 0;
+    padding: 150px 0 150px 0;
 }
 .highlights-image.active{
     opacity: 1;
@@ -779,7 +741,7 @@ p:last-child{
     z-index: 1;
 }
 .highlights-infos-base{
-    flex: 1 1 35%;
+    flex: 1 1 40%;
     padding: 40px;
     display: flex;
     align-items: center;
@@ -787,9 +749,18 @@ p:last-child{
 .highlights-info{
     display: none;
     border-left: 2px solid #000;
-    padding: 16px 0 16px 40px;
+    padding: 0 0 0 40px;
+}
+.highlights-info h3{
+    font-size: 32px;
+    line-height: 40px;
 }
 .highlights-info p{
+    font-size: 24px;
+    line-height: 32px;
+}
+.highlights-info p:first-child{
+    color: #0054ff;
     font-size: 18px;
     line-height: 26px;
 }
@@ -806,6 +777,15 @@ p:last-child{
       opacity: 1;
       transform: translateY(0);
     }
+}
+.highlights-info .btn-black{
+    font-size: 18px;
+    line-height: 26px;
+    padding: 12px 40px;
+}
+.highlights-info a.color-black{
+    font-size: 18px;
+    line-height: 26px;
 }
 .highlight-trigger{
     height: 100vh;
@@ -844,14 +824,26 @@ p:last-child{
 }
 .section-popular-categories h3{
     font-weight: bold;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 26px;
     margin-bottom: 0;
+}
+.section-used-printer .section-popular-categories h3 {
+    font-size: 14px;
+    line-height: 20px;    
 }
 .section-popular-categories img{
     width: 100%;
     height: 300px;
     object-fit: contain;
+}
+.popular-categories-holder img{
+    transition: all 0.5s ease;
+}
+.popular-categories-holder:hover img{
+    opacity: 0.8;
+    -webkit-opacity: 0.8;
+    transition: all 0.2s ease;
 }
 
 /*Section Service List CSS*/
@@ -1124,14 +1116,14 @@ p:last-child{
 }
 .about-us-content h2{
     text-transform: uppercase;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 28px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 .about-us-content p{
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 18px;
+    line-height: 26px;
     margin-bottom: 24px;
 }
 .about-us-content ul{
@@ -1140,8 +1132,8 @@ p:last-child{
     padding-left: 32px;
 }
 .about-us-content ul li{
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 18px;
+    line-height: 26px;
     padding-bottom: 5px;
 }
 .about-us-content ul li:last-child{
@@ -1356,7 +1348,7 @@ p:last-child{
 .section-main-product .product-thumbnails ul li{
     border: 1px solid #e5e5e5;
     border-radius: 4px;
-    margin: 0 16px;
+    margin: 0 6px;
     padding: 8px;
     text-align: center;
     cursor: pointer;
@@ -1514,6 +1506,17 @@ p:last-child{
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 0;
+}
+.main-product-slider .slick-prev{
+    left: 0;
+    z-index: 9;
+}
+.main-product-slider .slick-next{
+    right: 0;
+    z-index: 9;
+}
+.main-product-slider .slick-prev:before, .main-product-slider .slick-next:before{
+    font-size: 24px;
 }
 
 /*Printing Service Page CSS*/
@@ -1703,19 +1706,65 @@ p:last-child{
     line-height: 20px;
     -moz-appearance: textfield;
 }
+
+
+
 .product-filter .range-slider{
     width: 100%;
     margin: auto;
     text-align: center;
     position: relative;
+    height: 70px;
 }
+
+        .product-filter .range-slider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: #115bbb;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+
 .product-filter .range-slider svg,
-.product-filter .range-slider input[type=range] {
-    position: absolute;
-    left: 0;
-    top: -16px;
-    margin: 0;
-}
+        .product-filter .range-slider input[type="range"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            -webkit-appearance: none;
+            background: transparent;
+            pointer-events: none;
+            opacity: 0;
+            z-index: 2;
+        }
+        
+                .product-filter .range-slider .custom-thumb {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #115bbb;
+            border: 1px solid #115bbb;
+            border-radius: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        .product-filter .range-slider .min-thumb {
+            left: 0;
+        }
+
+        .product-filter .range-slider .max-thumb {
+            left: 100%;
+        }
+
+
 .product-filter input[type=number]::-webkit-outer-spin-button,
 .product-filter input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -1814,7 +1863,17 @@ p:last-child{
 .product-filter .range-slider input{
     margin-right: 0;
     border-width: 1px;
+    -moz-appearance: textfield;
+    background-color: transparent;
 }
+.product-filter .range-slider input::-webkit-outer-spin-button,
+.product-filter .range-slider input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
 .product-filter .accordion-button::after{
     background-size: 16px;
     background-position: right center;
@@ -1852,308 +1911,8 @@ p:last-child{
         padding: 12px 0 0 0;
     }
 }
-
-/* ============================================================
-   TABLET BREAKPOINT (991px and below)
-   Covers md devices: tablets in landscape/portrait
-   ============================================================ */
-@media screen and (max-width: 991px){
-    /* --- Global --- */
-    .section-padding{
-        padding: 64px 0;
-    }
-    .section-padding-bottom{
-        padding-bottom: 64px;
-    }
-    .seciton-head{
-        margin-bottom: 32px;
-    }
-    .w-60{
-        width: 80%!important;
-    }
-
-    /* --- Header & Navigation --- */
-    .header{
-        padding: 12px 0 20px;
-    }
-    .header p.text-end{
-        text-align: center!important;
-        margin-bottom: 8px;
-    }
-    .header .main-logo img{
-        width: 130px;
-    }
-    .header .main-navigation{
-        position: relative;
-    }
-    .header .main-navigation .menu-icon{
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
-    .main-navigation ul{
-        display: none;
-        padding-top: 16px;
-    }
-    .main-navigation ul li{
-        padding-right: 0;
-        margin-right: 0;
-        text-align: center;
-    }
-    .main-navigation ul li:after{
-        display: none;
-    }
-    .main-navigation ul li:first-child a{
-        display: inline-flex;
-    }
-    .main-navigation ul li a{
-        font-size: 13px;
-    }
-    .main-navigation .sub-menu{
-        position: relative;
-        top: 0;
-        width: 100%;
-        max-width: 100%;
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
-        display: none;
-        padding: 0 16px;
-    }
-    .main-navigation ul>li:hover .sub-menu,
-    .main-navigation ul>li.li-has-sub-menu:hover .sub-menu{
-        display: block;
-    }
-    .main-navigation .sub-menu .col-md-6:first-child{
-        border-right: 0;
-        border-bottom: 1px solid rgba(202,201,201,0.25);
-        margin-bottom: 8px;
-        padding-bottom: 8px;
-    }
-
-    /* --- All Categories Sidebar (Home page) --- */
-    .all-categories-wrapper{
-        position: relative;
-        top: 0;
-        max-width: 100%;
-    }
-    .all-categories-wrapper:before{
-        display: none;
-    }
-    .all-categories-sub-menu{
-        position: relative;
-        left: 0;
-        max-width: 100%!important;
-        opacity: 1!important;
-    }
-    .all-categories-menu li.li-has-sub-menu:hover .all-categories-sub-menu{
-        max-width: 100%;
-    }
-
-    /* --- Product Search (Home page) --- */
-    .search-container{
-        max-width: 80%;
-    }
-    .section-product-search{
-        padding: 24px 0 16px;
-    }
-
-    /* --- Banner Slider (Home page) --- */
-    .banner-slider.w-75{
-        width: 90%!important;
-    }
-    .section-slider h1{
-        font-size: 28px;
-        line-height: 38px;
-    }
-    .section-slider .slider-sub-heading{
-        font-size: 26px;
-        line-height: 34px;
-    }
-    .section-slider .slick-next{
-        right: -30px;
-    }
-    .section-slider .slick-prev{
-        left: -30px;
-    }
-
-    /* --- Highlights Section (Home page) --- */
-    .highlights-sticky{
-        height: auto;
-        position: relative;
-    }
-    .highlights-images{
-        flex: 1 1 50%;
-    }
-    .highlights-infos-base{
-        flex: 1 1 50%;
-        padding: 20px;
-    }
-    .highlights-image{
-        padding: 40px;
-        padding-left: 0;
-    }
-    .highlight-trigger{
-        height: 60vh;
-    }
-
-    /* --- Popular Categories & New Products (Home page) --- */
-    .section-popular-categories .col-md-4{
-        border-right: 0!important;
-        border-bottom: 2px solid #9d928e;
-        padding: 24px 40px!important;
-    }
-    .section-popular-categories .col-md-4:nth-child(3n){
-        border-right: 0!important;
-    }
-    .section-popular-categories .col-md-4:nth-last-child(-n+3){
-        border-bottom: 2px solid #9d928e;
-        padding: 24px 40px!important;
-    }
-    .section-popular-categories .col-md-4:last-child{
-        border-bottom: 0!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4{
-        border: 2px solid #9d928e!important;
-        border-bottom: 0!important;
-        border-radius: 0!important;
-        padding: 24px 40px!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4:last-child{
-        border-bottom: 2px solid #9d928e!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4:first-child{
-        border-top-left-radius: 15px!important;
-        border-top-right-radius: 15px!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4:last-child{
-        border-bottom-left-radius: 15px!important;
-        border-bottom-right-radius: 15px!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4:nth-child(3){
-        border-top-right-radius: 0!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4:nth-last-child(3){
-        border-bottom-left-radius: 0!important;
-    }
-
-    /* --- Service List (Home page) --- */
-    .section-service-list .container-fluid{
-        padding: 0 24px;
-    }
-    .section-service-list .col-md-3{
-        margin-bottom: 24px;
-    }
-    .section-service-list .col-md-3:last-child{
-        margin-bottom: 0;
-    }
-    .section-service-list{
-        text-align: center;
-    }
-    .section-service-list .icon-image{
-        margin-right: 0;
-        margin-bottom: 8px;
-    }
-
-    /* --- Footer --- */
-    .footer-navigation li{
-        margin-right: 6px;
-        padding-right: 6px;
-        font-size: 12px;
-    }
-    .footer-navigation li a{
-        font-size: 11px;
-    }
-
-    /* --- About Page --- */
-    .about-us-content{
-        padding-right: 24px;
-    }
-
-    /* --- Contact Page --- */
-    .section-contact-info .contact-info-icon{
-        padding: 48px 8px;
-    }
-    .section-contact-form .contact-form{
-        margin-right: 24px;
-    }
-
-    /* --- Product Page --- */
-    .section-main-product .product-img img{
-        height: 400px;
-    }
-    .section-main-product .main-product-content .p-5{
-        padding: 24px!important;
-    }
-    .section-main-product .main-product-content h2{
-        font-size: 20px;
-        line-height: 28px;
-    }
-    .section-detailed-description ul.tabs li{
-        font-size: 18px;
-        line-height: 26px;
-        margin: 0 12px;
-    }
-    .section-detailed-description .table-responsive.w-75{
-        width: 90%!important;
-    }
-    .section-detailed-description .inquiry-box h2.w-50{
-        width: 80%!important;
-    }
-
-    /* --- Product Category Page --- */
-    .product-filter{
-        max-width: 100%;
-        margin-top: 0;
-        margin-bottom: 32px;
-    }
-    .section-used-printer select{
-        margin-top: 12px;
-    }
-    .section-used-printer .section-popular-categories .col-md-4{
-        padding: 20px 40px!important;
-    }
-    .section-used-printer .section-popular-categories .col-md-4:nth-last-child(-n+3){
-        padding: 20px 40px!important;
-    }
-
-    /* --- Service Pages --- */
-    .section-printing-form.section-about-us .about-us-content{
-        padding-left: 48px;
-    }
-
-    /* --- Service Category Page --- */
-    .section-printer-category .intro-content{
-        padding: 0 20px 40px 20px;
-    }
-    .section-printer-category .category-image{
-        margin-bottom: 16px;
-    }
-    .section-printer-category .section-contact-form h2{
-        padding: 0 20px;
-    }
-}
-
-/* ============================================================
-   MOBILE BREAKPOINT (767px and below)
-   Covers sm devices: phones in landscape, small tablets
-   ============================================================ */
+@media screen and (max-width: 991px){}
 @media screen and (max-width: 767px){
-    /* --- Global --- */
-    .section-padding{
-        padding: 48px 0;
-    }
-    .section-padding-bottom{
-        padding-bottom: 48px;
-    }
-    .section-padding-48{
-        padding: 32px 0;
-    }
-    .w-60{
-        width: 100%!important;
-    }
-
-    /* --- Header & Navigation --- */
     .header{
         padding: 12px 0 16px;
     }
@@ -2189,32 +1948,6 @@ p:last-child{
     .main-navigation ul li a{
         font-size: 13px;
     }
-    .main-navigation .sub-menu{
-        position: relative;
-        top: 0;
-        width: 100%;
-        max-width: 100%;
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
-        display: none;
-        padding: 0 12px;
-    }
-    .main-navigation ul>li:hover .sub-menu,
-    .main-navigation ul>li.li-has-sub-menu:hover .sub-menu{
-        display: block;
-    }
-    .main-navigation .sub-menu .col-md-6:first-child{
-        border-right: 0;
-        border-bottom: 1px solid rgba(202,201,201,0.25);
-        margin-bottom: 8px;
-        padding-bottom: 8px;
-    }
-
-    /* --- Footer --- */
-    .footer{
-        padding: 24px 0;
-    }
     .footer-navigation ul{
         display: block!important;
     }
@@ -2225,208 +1958,15 @@ p:last-child{
         text-align: center;
         padding-bottom: 8px;
     }
-    .footer p{
-        font-size: 13px;
+    .section-padding{
+        padding: 48px 0;
     }
-
-    /* --- All Categories (Home page) --- */
-    .all-categories-wrapper{
-        position: relative;
-        top: 0;
-        max-width: 100%;
+    .section-padding-bottom{
+        padding-bottom: 48px;
     }
-    .all-categories-wrapper:before{
-        display: none;
-    }
-    .all-categories-sub-menu{
-        position: relative;
-        left: 0;
-        max-width: 100%!important;
-        opacity: 1!important;
-    }
-    .all-categories-menu li.li-has-sub-menu:hover .all-categories-sub-menu{
-        max-width: 100%;
-    }
-
-    /* --- Product Search (Home page) --- */
-    .search-container{
-        max-width: 100%;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    .section-product-search{
-        padding: 24px 0 16px;
-    }
-    .search-container input[type=text]::-webkit-input-placeholder,
-    .search-container select, .search-container input,
-    .search-container button{
-        font-size: 10px;
-    }
-    .search-container input{
-        padding: 11.7px 12px;
-        flex: 1 1 40%;
-        min-width: 0;
-    }
-    .search-container select{
-        flex: 1 1 35%;
-        min-width: 0;
-    }
-    .search-container button{
-        margin-left: 0;
-        flex: 0 0 auto;
-        padding: 11px 20px;
-    }
-
-    /* --- Banner Slider (Home page) --- */
-    .banner-slider{
-        text-align: center;
-    }
-    .banner-slider.w-75{
-        width: 100%!important;
-    }
-    .banner-slider .slider-img img{
-        width: 280px;
-        margin: auto;
-    }
-    .section-slider .slider-content{
-        padding-left: 0;
-        padding-right: 0;
-        padding-bottom: 32px;
-        border: 0;
-        text-align: center;
-    }
-    .section-slider h1{
-        font-size: 24px;
-        line-height: 32px;
-    }
-    .section-slider .slider-sub-heading{
-        font-size: 20px;
-        line-height: 28px;
-    }
-    .section-slider h1 br,
-    .section-slider .slider-sub-heading br{
-        display: none;
-    }
-    .section-slider .slick-next{
-        right: 0;
-    }
-    .section-slider .slick-prev{
-        left: 0;
-    }
-    .section-slider .slick-prev,
-    .section-slider .slick-next{
-        z-index: 10;
-    }
-
-    /* --- Highlights Section (Home page) --- */
-    .section-highlights{
-        padding-top: 48px;
-    }
-    .highlights-sticky{
-        height: auto;
-        position: relative;
-    }
-    .highlights-images,
-    .highlights-infos-base{
-        flex: 1 1 100%;
-    }
-    .highlights-images{
-        height: 300px;
-    }
-    .highlights-image{
-        padding: 20px;
-        padding-left: 0;
-    }
-    .highlights-infos-base{
-        padding: 16px 0;
-    }
-    .highlights-info{
-        border: 0;
-        padding: 0;
-    }
-    .highlight-trigger{
-        height: 50vh;
-    }
-
-    /* --- Popular Categories & New Products --- */
-    .section-popular-categories .col-md-4{
-        border: 0!important;
-        border-bottom: 2px solid #9d928e!important;
-    }
-    .section-popular-categories .col-md-4:last-child{
-        border-bottom: 0!important;
-    }
-    .section-popular-categories .col-md-4,
-    .section-popular-categories.section-new-products .col-md-4{
-        padding: 24px 32px!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4{
-        border: 2px solid #9d928e!important;
-        border-bottom: 0!important;
-        border-radius: 0!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4:first-child{
-        border-top-left-radius: 15px!important;
-        border-top-right-radius: 15px!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4:last-child{
-        border-bottom: 2px solid #9d928e!important;
-        border-bottom-left-radius: 15px!important;
-        border-bottom-right-radius: 15px!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4:nth-child(3){
-        border-top-right-radius: 0!important;
-    }
-    .section-popular-categories.section-new-products .col-md-4:nth-last-child(3){
-        border-bottom-left-radius: 0!important;
-    }
-    .section-popular-categories img{
-        height: 220px;
-    }
-
-    /* --- Service List (Home page) --- */
-    .section-service-list{
-        text-align: center;
-        padding: 24px 0;
-    }
-    .section-service-list .container-fluid{
-        padding: 0 16px;
-    }
-    .section-service-list .col-md-3{
-        margin-bottom: 24px;
-    }
-    .section-service-list .col-md-3:last-child{
-        margin-bottom: 0;
-    }
-    .section-service-list .icon-image{
-        margin-right: 0;
-        margin-bottom: 8px;
-    }
-    .section-service-list h3{
-        font-size: 13px;
-    }
-    .section-service-list p{
-        font-size: 12px;
-    }
-
-    /* --- Posts Slider (Home page) --- */
-    .section-post .col-md-4{
-        padding: 0 8px;
-    }
-
-    /* --- About Page --- */
     .about-us-content{
         padding-right: 0;
-        margin-bottom: 32px;
     }
-    .about-us-content ul{
-        margin-bottom: 32px!important;
-    }
-    .section-about-us .mt-5 img{
-        padding: 0 32px;
-    }
-
-    /* --- Staff Section (About page) --- */
     .section-staff .staff-name{
         font-size: 13px;
         line-height: 20px;
@@ -2434,8 +1974,6 @@ p:last-child{
     .section-staff .team-content{
         padding: 12px 8px;
     }
-
-    /* --- Contact Page --- */
     .section-contact-info .contact-info-content h3{
         margin-bottom: 0;
     }
@@ -2443,13 +1981,7 @@ p:last-child{
         display: none;
     }
     .section-contact-info .contact-info-icon{
-        padding: 24px 8px;
-    }
-    .section-contact-info .col-md-4{
-        margin-bottom: 24px;
-    }
-    .section-contact-info .col-md-4:last-child{
-        margin-bottom: 0;
+        padding: 32px 8px;
     }
     .section-contact-form .contact-form.w-75{
         width: 100%!important;
@@ -2458,711 +1990,195 @@ p:last-child{
         font-size: 14px;
         line-height: 20px;
     }
+    .section-printing-form.section-about-us .about-us-content{
+        padding-left: 0;
+    }
+    .about-us-content ul{
+        margin-bottom: 48px!important;
+    }
+    .section-request-consultation h2{
+        font-size: 22px;
+        line-height: 30px;
+    }
+    .section-about-us .mt-5 img{
+        padding: 0 48px;
+    }
     .section-contact-form .contact-form{
         margin-right: 0;
-        margin-bottom: 32px;
+        margin-bottom: 48px;
     }
-    .section-map iframe{
-        height: 300px;
-    }
-
-    /* --- Product Page --- */
-    .section-main-product .product-img img{
-        padding: 0 16px;
-        height: 300px;
-    }
-    .product-thumbnails.w-75{
+    .section-printer-category .intro-content{
+        padding: 0 0 40px 0;
         width: 100%!important;
     }
-    .main-product-slider{
-        margin-bottom: 32px;
+    .section-printer-category .category-image{
+        margin-bottom: 24px;
     }
-    .section-main-product .product-thumbnails ul li{
-        margin: 0 6px;
+    .section-printer-category .section-contact-form h2{
+        padding: 0;
     }
-    .product-thumbnails ul.slider-nav{
-        justify-content: center;
-    }
-    .section-main-product .main-product-content .p-5{
-        padding: 20px!important;
-    }
-    .section-main-product .main-product-content h2{
-        font-size: 18px;
-        line-height: 26px;
-    }
-    .section-main-product .main-product-content img{
-        width: 150px;
-    }
-    .section-main-product h1{
-        font-size: 16px;
-        line-height: 24px;
-    }
-    .section-inner-page-banner h1{
-        font-size: 14px;
-        line-height: 22px;
-    }
-
-    /* --- Product Detail Tabs --- */
-    .section-detailed-description ul.tabs li{
-        margin: 0 0 12px 0;
-        display: block;
-        font-size: 16px;
-        line-height: 24px;
-    }
-    .section-detailed-description .inquiry-box h2{
-        font-size: 20px;
-        line-height: 28px;
-    }
-    .section-detailed-description .table-responsive.w-75{
+    .section-contact-form.w-60{
         width: 100%!important;
     }
-    .section-detailed-description .table-responsive{
-        padding: 16px;
-    }
-    .section-detailed-description .table tr td{
-        font-size: 11px;
-        line-height: 16px;
-        padding: 6px;
-    }
-    .section-detailed-description .table tr td:first-child{
-        width: 35%;
-    }
-    .section-detailed-description .table tr td:last-child{
-        width: 65%;
-    }
-    .section-detailed-description .inquiry-box h2.w-50{
-        width: 100%!important;
-    }
-    .section-detailed-description .inquiry-box{
-        padding: 20px;
-    }
-    .section-detailed-description .product-images .col-md-6{
-        margin-bottom: 16px;
-    }
-    .section-detailed-description .product-images .col-md-6:nth-last-child(-n+2){
-        margin-bottom: 16px;
-    }
-    .section-detailed-description .product-images .col-md-6:last-child{
-        margin-bottom: 0;
-    }
-
-    /* --- Related Products (Product page) --- */
-    .section-related-products .col-md-3{
-        margin-bottom: 32px;
-    }
-    .section-related-products .col-md-3:last-child{
-        margin-bottom: 0;
-    }
-    .section-related-products img{
-        height: 200px;
-    }
-
-    /* --- Product Category Page --- */
     .product-filter{
         margin-top: 0;
-        margin-bottom: 32px;
+        margin-bottom: 48px;
         max-width: 100%;
     }
     .section-used-printer{
         padding-top: 0;
     }
     .product-filter .accordion-body{
-        padding: 16px 16px 0 16px;
+        padding: 16px 20px 0 20px;
     }
     .section-used-printer select{
         margin-top: 12px;
         width: 100%!important;
     }
+    .section-popular-categories .col-md-4{
+        border: 0!important;
+        border-bottom: 2px solid #9d928e!important;
+    }
     .section-used-printer .section-popular-categories .col-md-4,
     .section-used-printer .section-popular-categories .col-md-4:nth-last-child(-n+3){
-        padding: 16px 32px!important;
+        padding: 20px 60px 20px 60px!important;
     }
-    .section-used-printer .section-popular-categories img{
-        height: 120px;
-    }
-    .pagination ul li{
-        padding: 8px;
-        width: 40px;
-        margin: 0 4px;
-    }
-
-    /* --- Services Page (Printing Form) --- */
-    .section-printing-form h2{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .section-printing-form.section-about-us .about-us-content{
-        padding-left: 0;
-    }
-    .section-printing-form .printing-image-holder{
-        margin-top: 32px;
-    }
-
-    /* --- Service Single Page --- */
-    .section-request-consultation h2{
-        font-size: 20px;
-        line-height: 28px;
-    }
-    .section-request-consultation img{
-        border-radius: 10px;
-    }
-
-    /* --- Service Category Page --- */
-    .section-printer-category .intro-content{
-        padding: 0 0 32px 0;
-        width: 100%!important;
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .section-printer-category .category-image{
-        margin-bottom: 16px;
-    }
-    .section-printer-category .section-contact-form h2{
-        padding: 0;
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .section-contact-form.w-60{
-        width: 100%!important;
-    }
-}
-
-/* ============================================================
-   SMALL MOBILE BREAKPOINT (480px and below)
-   Covers xs devices: iPhone SE, small Android phones (320px+)
-   ============================================================ */
-@media screen and (max-width: 480px){
-    /* --- Global --- */
-    body{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    p{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .section-padding{
-        padding: 32px 0;
-    }
-    .section-padding-bottom{
-        padding-bottom: 32px;
-    }
-    .section-padding-48{
-        padding: 24px 0;
-    }
-    .seciton-head{
-        margin-bottom: 24px;
-    }
-    .seciton-head h2{
-        font-size: 20px;
-        line-height: 28px;
-    }
-    .blue-btn-md{
-        font-size: 12px;
-        padding: 8px 20px;
-    }
-    .blue-btn-lg{
-        font-size: 12px;
-        padding: 16px 16px;
-    }
-    .btn-black{
-        font-size: 14px;
-        padding: 8px 24px;
-    }
-
-    /* --- Header --- */
-    .header{
-        padding: 10px 0 14px;
-    }
-    .header p a{
-        font-size: 10px;
-    }
-    .header .main-logo img{
-        width: 100px;
-    }
-
-    /* --- Footer --- */
-    .footer{
-        padding: 20px 0;
-    }
-    .footer p{
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .footer-navigation li a{
-        font-size: 11px;
-        line-height: 18px;
-    }
-
-    /* --- Product Search (Home) --- */
-    .search-container{
-        flex-direction: column;
-        gap: 8px;
-    }
-    .search-container input,
-    .search-container select{
-        width: 100%;
-        flex: 1 1 100%;
-        border-radius: 13px!important;
-        font-size: 12px;
-    }
-    .search-container input{
-        border-top-right-radius: 13px!important;
-        border-bottom-right-radius: 13px!important;
-    }
-    .search-container select{
-        border-top-left-radius: 13px!important;
-        border-bottom-left-radius: 13px!important;
-    }
-    .search-container button{
-        width: 100%;
-        margin-left: 0;
-        padding: 12px;
-        font-size: 13px;
-    }
-
-    /* --- Banner Slider (Home) --- */
-    .banner-slider .slider-img img{
-        width: 200px;
-    }
-    .section-slider h1{
-        font-size: 20px;
-        line-height: 28px;
-    }
-    .section-slider .slider-sub-heading{
-        font-size: 16px;
-        line-height: 24px;
-    }
-    .section-slider p{
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .section-slider a{
-        font-size: 11px;
-        padding: 14px 32px;
-    }
-
-    /* --- Highlights (Home) --- */
-    .section-highlights{
-        padding-top: 32px;
-    }
-    .highlights-images{
-        height: 220px;
-    }
-    .highlights-image{
-        padding: 12px;
-        padding-left: 0;
-    }
-    .highlight-trigger{
-        height: 40vh;
-    }
-    .highlights-info p{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .highlights-info h3{
-        font-size: 16px;
-    }
-
-    /* --- Popular Categories & New Products (Home) --- */
-    .section-popular-categories .col-md-4,
-    .section-popular-categories.section-new-products .col-md-4{
-        padding: 20px 16px!important;
-    }
-    .section-popular-categories h3{
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .section-popular-categories img{
-        height: 180px;
-    }
-
-    /* --- Service List (Home) --- */
-    .section-service-list h3{
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .section-service-list p{
-        font-size: 11px;
-        line-height: 16px;
-    }
-    .section-service-list .icon-image{
-        height: 56px;
-        width: 60px;
-    }
-
-    /* --- Posts Section (Home) --- */
-    .section-post .post-title a{
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .section-post .post-description{
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .section-post .post-date{
-        font-size: 11px;
-    }
-
-    /* --- Inner Page Banner --- */
-    .section-inner-page-banner{
-        padding: 24px 0;
-    }
-    .section-inner-page-banner h1{
-        font-size: 12px;
-        line-height: 20px;
-    }
-
-    /* --- About Page --- */
-    .about-us-content h2{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .about-us-content p{
-        font-size: 13px;
-        line-height: 20px;
-    }
-    .about-us-content ul li{
-        font-size: 13px;
-        line-height: 20px;
-    }
-    .section-about-us .mt-5 img{
-        padding: 0 16px;
-    }
-
-    /* --- Staff Section (About) --- */
-    .section-staff .staff-designation{
-        font-size: 11px;
-        line-height: 16px;
-    }
-    .section-staff .staff-name{
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .section-staff .team-content{
-        padding: 10px 6px;
-    }
-
-    /* --- Contact Page --- */
-    .section-contact-info h2{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .section-contact-info p{
-        font-size: 13px;
-        line-height: 20px;
-        margin-bottom: 24px;
-    }
-    .section-contact-info .contact-info-icon{
-        padding: 16px 8px;
-    }
-    .section-contact-info .contact-info-icon i{
-        font-size: 16px;
-    }
-    .section-contact-info .contact-info-content h3{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .section-contact-info .contact-info-content p{
-        font-size: 12px;
-        line-height: 20px;
-    }
-    .section-contact-form .contact-form{
-        padding: 20px;
-    }
-    .section-map iframe{
-        height: 250px;
-    }
-    label{
-        font-size: 10px;
-    }
-    input[type=text], select, textarea{
-        font-size: 13px;
-        padding: 6px 10px;
-        margin-bottom: 16px;
-    }
-
-    /* --- Product Page --- */
     .section-main-product .product-img img{
-        padding: 0;
-        height: 250px;
+        padding: 0 32px;
+        height: 350px;
     }
-    .section-main-product h1{
-        font-size: 14px;
-        line-height: 22px;
+    .product-thumbnails.w-75{
+        width: 100%!important;
     }
-    .section-main-product .main-product-content .p-5{
-        padding: 16px!important;
-    }
-    .section-main-product .main-product-content h2{
-        font-size: 16px;
-        line-height: 24px;
-    }
-    .section-main-product .main-product-content img{
-        width: 120px;
+    .main-product-slider{
+        margin-bottom: 48px;
     }
     .section-main-product .product-thumbnails ul li{
-        margin: 0 4px;
-        padding: 4px;
+        margin: 0 8px;
     }
-    .section-main-product .product-thumbnails ul li img{
-        height: 35px;
-        width: 25px;
+    .product-thumbnails ul.slider-nav{
+        justify-content: center;
     }
-
-    /* --- Product Detail Tabs --- */
+    .section-main-product .main-product-content .p-5{
+        padding: 24px!important;
+    }
+    .section-main-product .main-product-content h2{
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .section-main-product .main-product-content img{
+        width: 150px;
+    }
     .section-detailed-description ul.tabs li{
-        font-size: 14px;
-        line-height: 22px;
-        margin-bottom: 8px;
-    }
-    .section-detailed-description .table-responsive{
-        padding: 12px;
-    }
-    .section-detailed-description .table tr td{
-        font-size: 10px;
-        line-height: 14px;
-        padding: 4px;
-    }
-    .section-detailed-description .table tr td span{
-        padding: 8px;
-    }
-    .section-detailed-description .inquiry-box{
-        padding: 16px;
+        margin: 0 0 16px 0;
+        display: block;
     }
     .section-detailed-description .inquiry-box h2{
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 22px;
+        line-height: 30px;
     }
-    .section-detailed-description .inquiry-box p{
-        font-size: 14px;
-        line-height: 22px;
-        margin-bottom: 24px;
+    .section-detailed-description .table-responsive.w-75{
+        width: 100%!important;
     }
-    .section-detailed-description .product-images-wrapper{
-        padding: 24px 16px;
+    .section-detailed-description .table-responsive{
+        padding: 24px;
     }
-
-    /* --- Related Products --- */
-    .section-related-products .related-product-heading{
-        font-size: 14px;
-        line-height: 22px;
-        margin-bottom: 24px;
-    }
-    .section-related-products img{
-        height: 160px;
-        margin-bottom: 16px;
-    }
-    .section-related-products h3{
+    .section-detailed-description .table tr td{
         font-size: 12px;
         line-height: 18px;
+        padding: 8px;
+    }
+    .section-detailed-description .inquiry-box h2.w-50{
+        width: 100%!important;
+    }
+    .section-detailed-description .inquiry-box{
+        padding: 24px;
     }
     .section-related-products .col-md-3{
-        margin-bottom: 24px;
+        margin-bottom: 48px;
     }
-
-    /* --- Product Category Page --- */
-    .product-filter{
-        padding: 12px;
+    .section-related-products .col-md-3:last-child{
+        margin-bottom: 0;
     }
-    .product-filter .product-filter-heading{
-        font-size: 16px;
-        line-height: 24px;
+    .banner-slider{
+        text-align: center;
     }
-    .product-filter .accordion-button{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .product-filter .accordion-body{
-        padding: 12px 8px 0 8px;
-    }
-    .section-used-printer .section-popular-categories .col-md-4,
-    .section-used-printer .section-popular-categories .col-md-4:nth-last-child(-n+3){
-        padding: 16px 16px!important;
-    }
-    .section-used-printer .section-popular-categories img{
-        height: 100px;
-    }
-    .pagination ul li{
-        padding: 6px;
-        width: 36px;
-        margin: 0 3px;
-        font-size: 13px;
-    }
-    .pagination ul li a{
-        font-size: 13px;
-    }
-
-    /* --- Services Page --- */
-    .section-printing-form h2{
-        font-size: 13px;
-        line-height: 20px;
-        margin-bottom: 16px;
-    }
-    .section-printing-form .printing-image-content ul li{
-        font-size: 14px;
-        line-height: 22px;
-        padding: 6px 0;
-    }
-    .section-printing-form .printing-image-holder{
-        padding: 12px;
-    }
-
-    /* --- Service Single Page --- */
-    .section-printing-form.section-about-us .about-us-content h2{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .section-printing-form.section-about-us .about-us-content ul li{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .section-request-consultation h2{
-        font-size: 16px;
-        line-height: 24px;
-    }
-
-    /* --- Service Category Page --- */
-    .section-printer-category .intro-content{
-        font-size: 13px;
-        line-height: 20px;
-        padding-bottom: 24px;
-    }
-    .section-printer-category .category-image{
-        padding: 16px;
-    }
-    .section-printer-category .category-image img{
-        height: 150px;
-    }
-    .section-printer-category .section-contact-form h2{
-        font-size: 13px;
-        line-height: 20px;
-    }
-}
-
-/* ============================================================
-   EXTRA SMALL MOBILE (360px and below)
-   Covers the absolute smallest phones (320px Galaxy, etc.)
-   ============================================================ */
-@media screen and (max-width: 360px){
-    .header .main-logo img{
-        width: 85px;
-    }
-    .header p a{
-        font-size: 9px;
-    }
-    .section-slider h1{
-        font-size: 18px;
-        line-height: 24px;
-    }
-    .section-slider .slider-sub-heading{
-        font-size: 14px;
-        line-height: 20px;
-    }
-    .section-slider p{
-        font-size: 11px;
-    }
-    .section-slider a{
-        font-size: 10px;
-        padding: 12px 24px;
+    .banner-slider.w-75{
+        width: 100%!important;
     }
     .banner-slider .slider-img img{
-        width: 160px;
+        width: 300px;
+        margin: auto;
     }
-    .highlights-images{
-        height: 180px;
+    .section-slider .slider-content{
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 32px;
+        border: 0;
+    }
+    .section-slider h1{
+        font-size: 26px;
+        line-height: 34px;
+    }
+    .section-slider .slider-sub-heading{
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .search-container{
+        max-width: 100%;
+    }
+    .section-product-search{
+        padding: 72px 0 16px;
+    }
+    .search-container input[type=text]::-webkit-input-placeholder,
+    .search-container select, .search-container input,
+    .search-container button{
+        font-size: 9px;
+    }
+    .search-container input{
+        padding: 11.7px 12px;
+    }
+    .section-highlights{
+        padding-top: 96px;
+    }
+    .highlights-image{
+        padding: 0px;
+    }
+    .highlights-info{
+        border: 0;
+        padding: 0;
+    }
+    .highlights-images,
+    .highlights-infos-base{
+        flex: 1 1 100%;
+    }
+    .highlights-infos-base{
+        padding: 0;
     }
     .section-popular-categories .col-md-4,
     .section-popular-categories.section-new-products .col-md-4{
-        padding: 16px 12px!important;
+        padding: 32px 60px 32px 60px!important;
     }
-    .section-popular-categories img{
-        height: 150px;
+    .section-service-list{
+        text-align: center;
     }
-    .section-popular-categories h3{
-        font-size: 11px;
-        line-height: 16px;
+    .section-service-list .col-md-3{
+        margin-bottom: 32px;
     }
-    .section-inner-page-banner h1{
-        font-size: 11px;
-        line-height: 18px;
+    .section-service-list .icon-image{
+        margin-right: 0;
     }
-    .about-us-content h2{
-        font-size: 13px;
-        line-height: 20px;
+    .section-slider .slick-next{
+        right: 0;
     }
-    .about-us-content p,
-    .about-us-content ul li{
-        font-size: 12px;
-        line-height: 18px;
+    .section-slider .slick-prev{
+        left: 0;
     }
-    .section-contact-info .contact-info-content h3{
-        font-size: 13px;
-        line-height: 20px;
-    }
-    .section-contact-info .contact-info-content p{
-        font-size: 11px;
-        line-height: 18px;
-    }
-    .section-main-product .product-img img{
-        height: 200px;
-    }
-    .section-main-product h1{
-        font-size: 13px;
-        line-height: 20px;
-    }
-    .section-main-product .main-product-content h2{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .section-detailed-description .table tr td{
-        font-size: 9px;
-        line-height: 13px;
-    }
-    .section-detailed-description .inquiry-box h2{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .section-related-products img{
-        height: 130px;
-    }
-    .product-filter .product-filter-heading{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .product-filter .accordion-button{
-        font-size: 13px;
-        line-height: 20px;
-    }
-    .section-used-printer .section-popular-categories img{
-        height: 80px;
-    }
-    .section-printer-category .category-image img{
-        height: 120px;
-    }
-    .section-printing-form h2{
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .section-request-consultation h2{
-        font-size: 14px;
-        line-height: 22px;
-    }
-    .blue-btn-md{
-        font-size: 11px;
-        padding: 8px 16px;
-    }
-    .blue-btn-lg{
-        font-size: 11px;
-        padding: 14px 14px;
-    }
-    .btn-black{
-        font-size: 13px;
-        padding: 6px 20px;
-    }
-    input[type=text], select, textarea{
-        font-size: 12px;
-        padding: 6px 8px;
-        margin-bottom: 12px;
+    .all-categories-sub-menu{
+        left: 110px;
+        z-index: 9;
     }
 }
+
+
+
