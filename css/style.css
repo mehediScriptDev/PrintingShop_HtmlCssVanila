@@ -1940,15 +1940,57 @@ p:last-child{
     .all-categories-wrapper:before{
         display: none;
     }
+    /* Mobile: hide category list by default and animate open using .open class
+       Use absolute positioning so the menu overlays content (doesn't push layout)
+       and animate with transform + opacity for smooth, GPU-accelerated motion. */
+    .all-categories-menu{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        overflow: visible;
+        opacity: 0;
+        transform: translateY(-18px);
+        transform-origin: top center;
+        transition: transform 620ms cubic-bezier(.2,.8,.2,1), opacity 420ms ease;
+        pointer-events: none;
+        z-index: 9999;
+        display: block;
+        background-color: #000;
+        border-radius: 6px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .all-categories-wrapper.open .all-categories-menu{
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    /* Mobile: keep submenus closed by default; open when the parent li has `.open` */
     .all-categories-sub-menu{
         position: relative;
         left: 0;
         max-width: 100%!important;
-        opacity: 1!important;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transform: translateY(-8px);
+        transition: max-height 420ms cubic-bezier(.2,.8,.2,1), transform 420ms ease, opacity 360ms ease;
+        pointer-events: none;
     }
+    .all-categories-menu li.open .all-categories-sub-menu{
+        opacity: 1;
+        max-height: 2000px;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    /* disable hover reveal on touch widths */
     .all-categories-menu li.li-has-sub-menu:hover .all-categories-sub-menu{
         max-width: 100%;
     }
+    /* rotate the arrow when submenu is open */
+    .all-categories-menu ul li a span{display:inline-block;transition:transform 320ms ease}
+    .all-categories-menu li.open > a > span{transform:rotate(90deg)}
 
     /* --- Product Search (Home page) --- */
     .search-container{

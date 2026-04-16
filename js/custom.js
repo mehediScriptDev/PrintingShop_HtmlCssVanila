@@ -143,27 +143,53 @@ $(document).ready(function () {
 
 	// Close open submenu when clicking outside the navigation (mobile)
 	$(document).on('click', function(e) {
-	  if ($(window).width() < 992) {
-	    if (!$(e.target).closest('.main-navigation').length) {
-	      $('.main-navigation .li-has-sub-menu.open').removeClass('open').find('.sub-menu').slideUp(200);
-	    }
-	  }
+		if ($(window).width() < 992) {
+			if (!$(e.target).closest('.main-navigation').length) {
+				$('.main-navigation .li-has-sub-menu.open').removeClass('open').find('.sub-menu').slideUp(200);
+			}
+			// close categories panel and any open category submenus when clicking outside it
+			if (!$(e.target).closest('.all-categories-wrapper').length && !$(e.target).closest('.toggle-list').length) {
+				$('.all-categories-wrapper.open').removeClass('open');
+				$('.all-categories-menu li.open').removeClass('open');
+			}
+		}
 	});
 
 	// Keep nav visibility consistent on resize
 	$(window).on('resize', function() {
-	  if ($(window).width() >= 992) {
-	    $('.main-navigation ul').show();
-	    $('.main-navigation .li-has-sub-menu .sub-menu').removeAttr('style');
-	    $('.main-navigation .li-has-sub-menu').removeClass('open');
-	  } else {
-	    $('.main-navigation ul').hide();
-	  }
+		if ($(window).width() >= 992) {
+			$('.main-navigation ul').show();
+			$('.main-navigation .li-has-sub-menu .sub-menu').removeAttr('style');
+			$('.main-navigation .li-has-sub-menu').removeClass('open');
+			$('.all-categories-wrapper').removeClass('open');
+			$('.all-categories-menu li.open').removeClass('open');
+		} else {
+			$('.main-navigation ul').hide();
+		}
 	});
 
-  // Menu List 
-	$('.toggle-list').on('click', function() {
-	  $('.all-categories-menu').slideToggle(300);
+	// Menu List (mobile): toggle categories panel using `.open` class for smooth CSS animation
+	$('.toggle-list').on('click', function(e) {
+		e.preventDefault();
+		var $wrapper = $(this).closest('.all-categories-wrapper');
+		$wrapper.toggleClass('open');
+		// always close any open category submenu when toggling the entire panel
+		$wrapper.find('li.open').removeClass('open');
+	});
+
+	// Category submenu toggle: open / close individual submenus when user clicks the arrow (mobile)
+	$('.all-categories-menu').on('click', 'li.li-has-sub-menu > a > span, li.li-has-sub-menu > a > span img', function(e){
+		if ($(window).width() < 992) {
+			e.preventDefault();
+			e.stopPropagation();
+			var $li = $(this).closest('li.li-has-sub-menu');
+			if ($li.hasClass('open')) {
+				$li.removeClass('open');
+			} else {
+				$li.siblings('.li-has-sub-menu.open').removeClass('open');
+				$li.addClass('open');
+			}
+		}
 	});
 
   // Tabs Content
