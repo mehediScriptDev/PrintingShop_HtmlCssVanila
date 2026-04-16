@@ -1795,8 +1795,308 @@ p:last-child{
         padding: 12px 0 0 0;
     }
 }
-@media screen and (max-width: 991px){}
+
+/* ============================================================
+   TABLET BREAKPOINT (991px and below)
+   Covers md devices: tablets in landscape/portrait
+   ============================================================ */
+@media screen and (max-width: 991px){
+    /* --- Global --- */
+    .section-padding{
+        padding: 64px 0;
+    }
+    .section-padding-bottom{
+        padding-bottom: 64px;
+    }
+    .seciton-head{
+        margin-bottom: 32px;
+    }
+    .w-60{
+        width: 80%!important;
+    }
+
+    /* --- Header & Navigation --- */
+    .header{
+        padding: 12px 0 20px;
+    }
+    .header p.text-end{
+        text-align: center!important;
+        margin-bottom: 8px;
+    }
+    .header .main-logo img{
+        width: 130px;
+    }
+    .header .main-navigation{
+        position: relative;
+    }
+    .header .main-navigation .menu-icon{
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .main-navigation ul{
+        display: none;
+        padding-top: 16px;
+    }
+    .main-navigation ul li{
+        padding-right: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+    .main-navigation ul li:after{
+        display: none;
+    }
+    .main-navigation ul li:first-child a{
+        display: inline-flex;
+    }
+    .main-navigation ul li a{
+        font-size: 13px;
+    }
+    .main-navigation .sub-menu{
+        position: relative;
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        display: none;
+        padding: 0 16px;
+    }
+    .main-navigation ul>li:hover .sub-menu,
+    .main-navigation ul>li.li-has-sub-menu:hover .sub-menu{
+        display: block;
+    }
+    .main-navigation .sub-menu .col-md-6:first-child{
+        border-right: 0;
+        border-bottom: 1px solid rgba(202,201,201,0.25);
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+    }
+
+    /* --- All Categories Sidebar (Home page) --- */
+    .all-categories-wrapper{
+        position: relative;
+        top: 0;
+        max-width: 100%;
+    }
+    .all-categories-wrapper:before{
+        display: none;
+    }
+    .all-categories-sub-menu{
+        position: relative;
+        left: 0;
+        max-width: 100%!important;
+        opacity: 1!important;
+    }
+    .all-categories-menu li.li-has-sub-menu:hover .all-categories-sub-menu{
+        max-width: 100%;
+    }
+
+    /* --- Product Search (Home page) --- */
+    .search-container{
+        max-width: 80%;
+    }
+    .section-product-search{
+        padding: 24px 0 16px;
+    }
+
+    /* --- Banner Slider (Home page) --- */
+    .banner-slider.w-75{
+        width: 90%!important;
+    }
+    .section-slider h1{
+        font-size: 28px;
+        line-height: 38px;
+    }
+    .section-slider .slider-sub-heading{
+        font-size: 26px;
+        line-height: 34px;
+    }
+    .section-slider .slick-next{
+        right: -30px;
+    }
+    .section-slider .slick-prev{
+        left: -30px;
+    }
+
+    /* --- Highlights Section (Home page) --- */
+    .highlights-sticky{
+        height: auto;
+        position: relative;
+    }
+    .highlights-images{
+        flex: 1 1 50%;
+    }
+    .highlights-infos-base{
+        flex: 1 1 50%;
+        padding: 20px;
+    }
+    .highlights-image{
+        padding: 40px;
+        padding-left: 0;
+    }
+    .highlight-trigger{
+        height: 60vh;
+    }
+
+    /* --- Popular Categories & New Products (Home page) --- */
+    .section-popular-categories .col-md-4{
+        border-right: 0!important;
+        border-bottom: 2px solid #9d928e;
+        padding: 24px 40px!important;
+    }
+    .section-popular-categories .col-md-4:nth-child(3n){
+        border-right: 0!important;
+    }
+    .section-popular-categories .col-md-4:nth-last-child(-n+3){
+        border-bottom: 2px solid #9d928e;
+        padding: 24px 40px!important;
+    }
+    .section-popular-categories .col-md-4:last-child{
+        border-bottom: 0!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4{
+        border: 2px solid #9d928e!important;
+        border-bottom: 0!important;
+        border-radius: 0!important;
+        padding: 24px 40px!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4:last-child{
+        border-bottom: 2px solid #9d928e!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4:first-child{
+        border-top-left-radius: 15px!important;
+        border-top-right-radius: 15px!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4:last-child{
+        border-bottom-left-radius: 15px!important;
+        border-bottom-right-radius: 15px!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4:nth-child(3){
+        border-top-right-radius: 0!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4:nth-last-child(3){
+        border-bottom-left-radius: 0!important;
+    }
+
+    /* --- Service List (Home page) --- */
+    .section-service-list .container-fluid{
+        padding: 0 24px;
+    }
+    .section-service-list .col-md-3{
+        margin-bottom: 24px;
+    }
+    .section-service-list .col-md-3:last-child{
+        margin-bottom: 0;
+    }
+    .section-service-list{
+        text-align: center;
+    }
+    .section-service-list .icon-image{
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+
+    /* --- Footer --- */
+    .footer-navigation li{
+        margin-right: 6px;
+        padding-right: 6px;
+        font-size: 12px;
+    }
+    .footer-navigation li a{
+        font-size: 11px;
+    }
+
+    /* --- About Page --- */
+    .about-us-content{
+        padding-right: 24px;
+    }
+
+    /* --- Contact Page --- */
+    .section-contact-info .contact-info-icon{
+        padding: 48px 8px;
+    }
+    .section-contact-form .contact-form{
+        margin-right: 24px;
+    }
+
+    /* --- Product Page --- */
+    .section-main-product .product-img img{
+        height: 400px;
+    }
+    .section-main-product .main-product-content .p-5{
+        padding: 24px!important;
+    }
+    .section-main-product .main-product-content h2{
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .section-detailed-description ul.tabs li{
+        font-size: 18px;
+        line-height: 26px;
+        margin: 0 12px;
+    }
+    .section-detailed-description .table-responsive.w-75{
+        width: 90%!important;
+    }
+    .section-detailed-description .inquiry-box h2.w-50{
+        width: 80%!important;
+    }
+
+    /* --- Product Category Page --- */
+    .product-filter{
+        max-width: 100%;
+        margin-top: 0;
+        margin-bottom: 32px;
+    }
+    .section-used-printer select{
+        margin-top: 12px;
+    }
+    .section-used-printer .section-popular-categories .col-md-4{
+        padding: 20px 40px!important;
+    }
+    .section-used-printer .section-popular-categories .col-md-4:nth-last-child(-n+3){
+        padding: 20px 40px!important;
+    }
+
+    /* --- Service Pages --- */
+    .section-printing-form.section-about-us .about-us-content{
+        padding-left: 48px;
+    }
+
+    /* --- Service Category Page --- */
+    .section-printer-category .intro-content{
+        padding: 0 20px 40px 20px;
+    }
+    .section-printer-category .category-image{
+        margin-bottom: 16px;
+    }
+    .section-printer-category .section-contact-form h2{
+        padding: 0 20px;
+    }
+}
+
+/* ============================================================
+   MOBILE BREAKPOINT (767px and below)
+   Covers sm devices: phones in landscape, small tablets
+   ============================================================ */
 @media screen and (max-width: 767px){
+    /* --- Global --- */
+    .section-padding{
+        padding: 48px 0;
+    }
+    .section-padding-bottom{
+        padding-bottom: 48px;
+    }
+    .section-padding-48{
+        padding: 32px 0;
+    }
+    .w-60{
+        width: 100%!important;
+    }
+
+    /* --- Header & Navigation --- */
     .header{
         padding: 12px 0 16px;
     }
@@ -1832,6 +2132,32 @@ p:last-child{
     .main-navigation ul li a{
         font-size: 13px;
     }
+    .main-navigation .sub-menu{
+        position: relative;
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        display: none;
+        padding: 0 12px;
+    }
+    .main-navigation ul>li:hover .sub-menu,
+    .main-navigation ul>li.li-has-sub-menu:hover .sub-menu{
+        display: block;
+    }
+    .main-navigation .sub-menu .col-md-6:first-child{
+        border-right: 0;
+        border-bottom: 1px solid rgba(202,201,201,0.25);
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+    }
+
+    /* --- Footer --- */
+    .footer{
+        padding: 24px 0;
+    }
     .footer-navigation ul{
         display: block!important;
     }
@@ -1842,15 +2168,208 @@ p:last-child{
         text-align: center;
         padding-bottom: 8px;
     }
-    .section-padding{
-        padding: 48px 0;
+    .footer p{
+        font-size: 13px;
     }
-    .section-padding-bottom{
-        padding-bottom: 48px;
+
+    /* --- All Categories (Home page) --- */
+    .all-categories-wrapper{
+        position: relative;
+        top: 0;
+        max-width: 100%;
     }
+    .all-categories-wrapper:before{
+        display: none;
+    }
+    .all-categories-sub-menu{
+        position: relative;
+        left: 0;
+        max-width: 100%!important;
+        opacity: 1!important;
+    }
+    .all-categories-menu li.li-has-sub-menu:hover .all-categories-sub-menu{
+        max-width: 100%;
+    }
+
+    /* --- Product Search (Home page) --- */
+    .search-container{
+        max-width: 100%;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .section-product-search{
+        padding: 24px 0 16px;
+    }
+    .search-container input[type=text]::-webkit-input-placeholder,
+    .search-container select, .search-container input,
+    .search-container button{
+        font-size: 10px;
+    }
+    .search-container input{
+        padding: 11.7px 12px;
+        flex: 1 1 40%;
+        min-width: 0;
+    }
+    .search-container select{
+        flex: 1 1 35%;
+        min-width: 0;
+    }
+    .search-container button{
+        margin-left: 0;
+        flex: 0 0 auto;
+        padding: 11px 20px;
+    }
+
+    /* --- Banner Slider (Home page) --- */
+    .banner-slider{
+        text-align: center;
+    }
+    .banner-slider.w-75{
+        width: 100%!important;
+    }
+    .banner-slider .slider-img img{
+        width: 280px;
+        margin: auto;
+    }
+    .section-slider .slider-content{
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 32px;
+        border: 0;
+        text-align: center;
+    }
+    .section-slider h1{
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .section-slider .slider-sub-heading{
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .section-slider h1 br,
+    .section-slider .slider-sub-heading br{
+        display: none;
+    }
+    .section-slider .slick-next{
+        right: 0;
+    }
+    .section-slider .slick-prev{
+        left: 0;
+    }
+    .section-slider .slick-prev,
+    .section-slider .slick-next{
+        z-index: 10;
+    }
+
+    /* --- Highlights Section (Home page) --- */
+    .section-highlights{
+        padding-top: 48px;
+    }
+    .highlights-sticky{
+        height: auto;
+        position: relative;
+    }
+    .highlights-images,
+    .highlights-infos-base{
+        flex: 1 1 100%;
+    }
+    .highlights-images{
+        height: 300px;
+    }
+    .highlights-image{
+        padding: 20px;
+        padding-left: 0;
+    }
+    .highlights-infos-base{
+        padding: 16px 0;
+    }
+    .highlights-info{
+        border: 0;
+        padding: 0;
+    }
+    .highlight-trigger{
+        height: 50vh;
+    }
+
+    /* --- Popular Categories & New Products --- */
+    .section-popular-categories .col-md-4{
+        border: 0!important;
+        border-bottom: 2px solid #9d928e!important;
+    }
+    .section-popular-categories .col-md-4:last-child{
+        border-bottom: 0!important;
+    }
+    .section-popular-categories .col-md-4,
+    .section-popular-categories.section-new-products .col-md-4{
+        padding: 24px 32px!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4{
+        border: 2px solid #9d928e!important;
+        border-bottom: 0!important;
+        border-radius: 0!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4:first-child{
+        border-top-left-radius: 15px!important;
+        border-top-right-radius: 15px!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4:last-child{
+        border-bottom: 2px solid #9d928e!important;
+        border-bottom-left-radius: 15px!important;
+        border-bottom-right-radius: 15px!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4:nth-child(3){
+        border-top-right-radius: 0!important;
+    }
+    .section-popular-categories.section-new-products .col-md-4:nth-last-child(3){
+        border-bottom-left-radius: 0!important;
+    }
+    .section-popular-categories img{
+        height: 220px;
+    }
+
+    /* --- Service List (Home page) --- */
+    .section-service-list{
+        text-align: center;
+        padding: 24px 0;
+    }
+    .section-service-list .container-fluid{
+        padding: 0 16px;
+    }
+    .section-service-list .col-md-3{
+        margin-bottom: 24px;
+    }
+    .section-service-list .col-md-3:last-child{
+        margin-bottom: 0;
+    }
+    .section-service-list .icon-image{
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+    .section-service-list h3{
+        font-size: 13px;
+    }
+    .section-service-list p{
+        font-size: 12px;
+    }
+
+    /* --- Posts Slider (Home page) --- */
+    .section-post .col-md-4{
+        padding: 0 8px;
+    }
+
+    /* --- About Page --- */
     .about-us-content{
         padding-right: 0;
+        margin-bottom: 32px;
     }
+    .about-us-content ul{
+        margin-bottom: 32px!important;
+    }
+    .section-about-us .mt-5 img{
+        padding: 0 32px;
+    }
+
+    /* --- Staff Section (About page) --- */
     .section-staff .staff-name{
         font-size: 13px;
         line-height: 20px;
@@ -1858,6 +2377,8 @@ p:last-child{
     .section-staff .team-content{
         padding: 12px 8px;
     }
+
+    /* --- Contact Page --- */
     .section-contact-info .contact-info-content h3{
         margin-bottom: 0;
     }
@@ -1865,7 +2386,13 @@ p:last-child{
         display: none;
     }
     .section-contact-info .contact-info-icon{
-        padding: 32px 8px;
+        padding: 24px 8px;
+    }
+    .section-contact-info .col-md-4{
+        margin-bottom: 24px;
+    }
+    .section-contact-info .col-md-4:last-child{
+        margin-bottom: 0;
     }
     .section-contact-form .contact-form.w-75{
         width: 100%!important;
@@ -1874,195 +2401,711 @@ p:last-child{
         font-size: 14px;
         line-height: 20px;
     }
-    .section-printing-form.section-about-us .about-us-content{
-        padding-left: 0;
-    }
-    .about-us-content ul{
-        margin-bottom: 48px!important;
-    }
-    .section-request-consultation h2{
-        font-size: 22px;
-        line-height: 30px;
-    }
-    .section-about-us .mt-5 img{
-        padding: 0 48px;
-    }
     .section-contact-form .contact-form{
         margin-right: 0;
-        margin-bottom: 48px;
+        margin-bottom: 32px;
     }
-    .section-printer-category .intro-content{
-        padding: 0 0 40px 0;
+    .section-map iframe{
+        height: 300px;
+    }
+
+    /* --- Product Page --- */
+    .section-main-product .product-img img{
+        padding: 0 16px;
+        height: 300px;
+    }
+    .product-thumbnails.w-75{
         width: 100%!important;
     }
-    .section-printer-category .category-image{
-        margin-bottom: 24px;
+    .main-product-slider{
+        margin-bottom: 32px;
     }
-    .section-printer-category .section-contact-form h2{
-        padding: 0;
+    .section-main-product .product-thumbnails ul li{
+        margin: 0 6px;
     }
-    .section-contact-form.w-60{
+    .product-thumbnails ul.slider-nav{
+        justify-content: center;
+    }
+    .section-main-product .main-product-content .p-5{
+        padding: 20px!important;
+    }
+    .section-main-product .main-product-content h2{
+        font-size: 18px;
+        line-height: 26px;
+    }
+    .section-main-product .main-product-content img{
+        width: 150px;
+    }
+    .section-main-product h1{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .section-inner-page-banner h1{
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    /* --- Product Detail Tabs --- */
+    .section-detailed-description ul.tabs li{
+        margin: 0 0 12px 0;
+        display: block;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .section-detailed-description .inquiry-box h2{
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .section-detailed-description .table-responsive.w-75{
         width: 100%!important;
     }
+    .section-detailed-description .table-responsive{
+        padding: 16px;
+    }
+    .section-detailed-description .table tr td{
+        font-size: 11px;
+        line-height: 16px;
+        padding: 6px;
+    }
+    .section-detailed-description .table tr td:first-child{
+        width: 35%;
+    }
+    .section-detailed-description .table tr td:last-child{
+        width: 65%;
+    }
+    .section-detailed-description .inquiry-box h2.w-50{
+        width: 100%!important;
+    }
+    .section-detailed-description .inquiry-box{
+        padding: 20px;
+    }
+    .section-detailed-description .product-images .col-md-6{
+        margin-bottom: 16px;
+    }
+    .section-detailed-description .product-images .col-md-6:nth-last-child(-n+2){
+        margin-bottom: 16px;
+    }
+    .section-detailed-description .product-images .col-md-6:last-child{
+        margin-bottom: 0;
+    }
+
+    /* --- Related Products (Product page) --- */
+    .section-related-products .col-md-3{
+        margin-bottom: 32px;
+    }
+    .section-related-products .col-md-3:last-child{
+        margin-bottom: 0;
+    }
+    .section-related-products img{
+        height: 200px;
+    }
+
+    /* --- Product Category Page --- */
     .product-filter{
         margin-top: 0;
-        margin-bottom: 48px;
+        margin-bottom: 32px;
         max-width: 100%;
     }
     .section-used-printer{
         padding-top: 0;
     }
     .product-filter .accordion-body{
-        padding: 16px 20px 0 20px;
+        padding: 16px 16px 0 16px;
     }
     .section-used-printer select{
         margin-top: 12px;
         width: 100%!important;
     }
-    .section-popular-categories .col-md-4{
-        border: 0!important;
-        border-bottom: 2px solid #9d928e!important;
-    }
     .section-used-printer .section-popular-categories .col-md-4,
     .section-used-printer .section-popular-categories .col-md-4:nth-last-child(-n+3){
-        padding: 20px 60px 20px 60px!important;
+        padding: 16px 32px!important;
     }
-    .section-main-product .product-img img{
-        padding: 0 32px;
-        height: 350px;
+    .section-used-printer .section-popular-categories img{
+        height: 120px;
     }
-    .product-thumbnails.w-75{
-        width: 100%!important;
+    .pagination ul li{
+        padding: 8px;
+        width: 40px;
+        margin: 0 4px;
     }
-    .main-product-slider{
-        margin-bottom: 48px;
+
+    /* --- Services Page (Printing Form) --- */
+    .section-printing-form h2{
+        font-size: 14px;
+        line-height: 22px;
     }
-    .section-main-product .product-thumbnails ul li{
-        margin: 0 8px;
+    .section-printing-form.section-about-us .about-us-content{
+        padding-left: 0;
     }
-    .product-thumbnails ul.slider-nav{
-        justify-content: center;
+    .section-printing-form .printing-image-holder{
+        margin-top: 32px;
     }
-    .section-main-product .main-product-content .p-5{
-        padding: 24px!important;
-    }
-    .section-main-product .main-product-content h2{
+
+    /* --- Service Single Page --- */
+    .section-request-consultation h2{
         font-size: 20px;
         line-height: 28px;
     }
-    .section-main-product .main-product-content img{
-        width: 150px;
+    .section-request-consultation img{
+        border-radius: 10px;
     }
-    .section-detailed-description ul.tabs li{
-        margin: 0 0 16px 0;
-        display: block;
-    }
-    .section-detailed-description .inquiry-box h2{
-        font-size: 22px;
-        line-height: 30px;
-    }
-    .section-detailed-description .table-responsive.w-75{
+
+    /* --- Service Category Page --- */
+    .section-printer-category .intro-content{
+        padding: 0 0 32px 0;
         width: 100%!important;
+        font-size: 14px;
+        line-height: 22px;
     }
-    .section-detailed-description .table-responsive{
-        padding: 24px;
+    .section-printer-category .category-image{
+        margin-bottom: 16px;
     }
-    .section-detailed-description .table tr td{
-        font-size: 12px;
-        line-height: 18px;
-        padding: 8px;
-    }
-    .section-detailed-description .inquiry-box h2.w-50{
-        width: 100%!important;
-    }
-    .section-detailed-description .inquiry-box{
-        padding: 24px;
-    }
-    .section-related-products .col-md-3{
-        margin-bottom: 48px;
-    }
-    .section-related-products .col-md-3:last-child{
-        margin-bottom: 0;
-    }
-    .banner-slider{
-        text-align: center;
-    }
-    .banner-slider.w-75{
-        width: 100%!important;
-    }
-    .banner-slider .slider-img img{
-        width: 300px;
-        margin: auto;
-    }
-    .section-slider .slider-content{
-        padding-left: 0;
-        padding-right: 0;
-        padding-bottom: 32px;
-        border: 0;
-    }
-    .section-slider h1{
-        font-size: 26px;
-        line-height: 34px;
-    }
-    .section-slider .slider-sub-heading{
-        font-size: 24px;
-        line-height: 32px;
-    }
-    .search-container{
-        max-width: 100%;
-    }
-    .section-product-search{
-        padding: 72px 0 16px;
-    }
-    .search-container input[type=text]::-webkit-input-placeholder,
-    .search-container select, .search-container input,
-    .search-container button{
-        font-size: 9px;
-    }
-    .search-container input{
-        padding: 11.7px 12px;
-    }
-    .section-highlights{
-        padding-top: 96px;
-    }
-    .highlights-image{
-        padding: 0px;
-    }
-    .highlights-info{
-        border: 0;
+    .section-printer-category .section-contact-form h2{
         padding: 0;
+        font-size: 14px;
+        line-height: 22px;
     }
-    .highlights-images,
-    .highlights-infos-base{
-        flex: 1 1 100%;
-    }
-    .highlights-infos-base{
-        padding: 0;
-    }
-    .section-popular-categories .col-md-4,
-    .section-popular-categories.section-new-products .col-md-4{
-        padding: 32px 60px 32px 60px!important;
-    }
-    .section-service-list{
-        text-align: center;
-    }
-    .section-service-list .col-md-3{
-        margin-bottom: 32px;
-    }
-    .section-service-list .icon-image{
-        margin-right: 0;
-    }
-    .section-slider .slick-next{
-        right: 0;
-    }
-    .section-slider .slick-prev{
-        left: 0;
-    }
-    .all-categories-sub-menu{
-        left: 110px;
-        z-index: 9;
+    .section-contact-form.w-60{
+        width: 100%!important;
     }
 }
 
+/* ============================================================
+   SMALL MOBILE BREAKPOINT (480px and below)
+   Covers xs devices: iPhone SE, small Android phones (320px+)
+   ============================================================ */
+@media screen and (max-width: 480px){
+    /* --- Global --- */
+    body{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    p{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .section-padding{
+        padding: 32px 0;
+    }
+    .section-padding-bottom{
+        padding-bottom: 32px;
+    }
+    .section-padding-48{
+        padding: 24px 0;
+    }
+    .seciton-head{
+        margin-bottom: 24px;
+    }
+    .seciton-head h2{
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .blue-btn-md{
+        font-size: 12px;
+        padding: 8px 20px;
+    }
+    .blue-btn-lg{
+        font-size: 12px;
+        padding: 16px 16px;
+    }
+    .btn-black{
+        font-size: 14px;
+        padding: 8px 24px;
+    }
 
+    /* --- Header --- */
+    .header{
+        padding: 10px 0 14px;
+    }
+    .header p a{
+        font-size: 10px;
+    }
+    .header .main-logo img{
+        width: 100px;
+    }
 
+    /* --- Footer --- */
+    .footer{
+        padding: 20px 0;
+    }
+    .footer p{
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .footer-navigation li a{
+        font-size: 11px;
+        line-height: 18px;
+    }
+
+    /* --- Product Search (Home) --- */
+    .search-container{
+        flex-direction: column;
+        gap: 8px;
+    }
+    .search-container input,
+    .search-container select{
+        width: 100%;
+        flex: 1 1 100%;
+        border-radius: 13px!important;
+        font-size: 12px;
+    }
+    .search-container input{
+        border-top-right-radius: 13px!important;
+        border-bottom-right-radius: 13px!important;
+    }
+    .search-container select{
+        border-top-left-radius: 13px!important;
+        border-bottom-left-radius: 13px!important;
+    }
+    .search-container button{
+        width: 100%;
+        margin-left: 0;
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    /* --- Banner Slider (Home) --- */
+    .banner-slider .slider-img img{
+        width: 200px;
+    }
+    .section-slider h1{
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .section-slider .slider-sub-heading{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .section-slider p{
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .section-slider a{
+        font-size: 11px;
+        padding: 14px 32px;
+    }
+
+    /* --- Highlights (Home) --- */
+    .section-highlights{
+        padding-top: 32px;
+    }
+    .highlights-images{
+        height: 220px;
+    }
+    .highlights-image{
+        padding: 12px;
+        padding-left: 0;
+    }
+    .highlight-trigger{
+        height: 40vh;
+    }
+    .highlights-info p{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .highlights-info h3{
+        font-size: 16px;
+    }
+
+    /* --- Popular Categories & New Products (Home) --- */
+    .section-popular-categories .col-md-4,
+    .section-popular-categories.section-new-products .col-md-4{
+        padding: 20px 16px!important;
+    }
+    .section-popular-categories h3{
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .section-popular-categories img{
+        height: 180px;
+    }
+
+    /* --- Service List (Home) --- */
+    .section-service-list h3{
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .section-service-list p{
+        font-size: 11px;
+        line-height: 16px;
+    }
+    .section-service-list .icon-image{
+        height: 56px;
+        width: 60px;
+    }
+
+    /* --- Posts Section (Home) --- */
+    .section-post .post-title a{
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .section-post .post-description{
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .section-post .post-date{
+        font-size: 11px;
+    }
+
+    /* --- Inner Page Banner --- */
+    .section-inner-page-banner{
+        padding: 24px 0;
+    }
+    .section-inner-page-banner h1{
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    /* --- About Page --- */
+    .about-us-content h2{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .about-us-content p{
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .about-us-content ul li{
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .section-about-us .mt-5 img{
+        padding: 0 16px;
+    }
+
+    /* --- Staff Section (About) --- */
+    .section-staff .staff-designation{
+        font-size: 11px;
+        line-height: 16px;
+    }
+    .section-staff .staff-name{
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .section-staff .team-content{
+        padding: 10px 6px;
+    }
+
+    /* --- Contact Page --- */
+    .section-contact-info h2{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .section-contact-info p{
+        font-size: 13px;
+        line-height: 20px;
+        margin-bottom: 24px;
+    }
+    .section-contact-info .contact-info-icon{
+        padding: 16px 8px;
+    }
+    .section-contact-info .contact-info-icon i{
+        font-size: 16px;
+    }
+    .section-contact-info .contact-info-content h3{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .section-contact-info .contact-info-content p{
+        font-size: 12px;
+        line-height: 20px;
+    }
+    .section-contact-form .contact-form{
+        padding: 20px;
+    }
+    .section-map iframe{
+        height: 250px;
+    }
+    label{
+        font-size: 10px;
+    }
+    input[type=text], select, textarea{
+        font-size: 13px;
+        padding: 6px 10px;
+        margin-bottom: 16px;
+    }
+
+    /* --- Product Page --- */
+    .section-main-product .product-img img{
+        padding: 0;
+        height: 250px;
+    }
+    .section-main-product h1{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .section-main-product .main-product-content .p-5{
+        padding: 16px!important;
+    }
+    .section-main-product .main-product-content h2{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .section-main-product .main-product-content img{
+        width: 120px;
+    }
+    .section-main-product .product-thumbnails ul li{
+        margin: 0 4px;
+        padding: 4px;
+    }
+    .section-main-product .product-thumbnails ul li img{
+        height: 35px;
+        width: 25px;
+    }
+
+    /* --- Product Detail Tabs --- */
+    .section-detailed-description ul.tabs li{
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 8px;
+    }
+    .section-detailed-description .table-responsive{
+        padding: 12px;
+    }
+    .section-detailed-description .table tr td{
+        font-size: 10px;
+        line-height: 14px;
+        padding: 4px;
+    }
+    .section-detailed-description .table tr td span{
+        padding: 8px;
+    }
+    .section-detailed-description .inquiry-box{
+        padding: 16px;
+    }
+    .section-detailed-description .inquiry-box h2{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .section-detailed-description .inquiry-box p{
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 24px;
+    }
+    .section-detailed-description .product-images-wrapper{
+        padding: 24px 16px;
+    }
+
+    /* --- Related Products --- */
+    .section-related-products .related-product-heading{
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 24px;
+    }
+    .section-related-products img{
+        height: 160px;
+        margin-bottom: 16px;
+    }
+    .section-related-products h3{
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .section-related-products .col-md-3{
+        margin-bottom: 24px;
+    }
+
+    /* --- Product Category Page --- */
+    .product-filter{
+        padding: 12px;
+    }
+    .product-filter .product-filter-heading{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .product-filter .accordion-button{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .product-filter .accordion-body{
+        padding: 12px 8px 0 8px;
+    }
+    .section-used-printer .section-popular-categories .col-md-4,
+    .section-used-printer .section-popular-categories .col-md-4:nth-last-child(-n+3){
+        padding: 16px 16px!important;
+    }
+    .section-used-printer .section-popular-categories img{
+        height: 100px;
+    }
+    .pagination ul li{
+        padding: 6px;
+        width: 36px;
+        margin: 0 3px;
+        font-size: 13px;
+    }
+    .pagination ul li a{
+        font-size: 13px;
+    }
+
+    /* --- Services Page --- */
+    .section-printing-form h2{
+        font-size: 13px;
+        line-height: 20px;
+        margin-bottom: 16px;
+    }
+    .section-printing-form .printing-image-content ul li{
+        font-size: 14px;
+        line-height: 22px;
+        padding: 6px 0;
+    }
+    .section-printing-form .printing-image-holder{
+        padding: 12px;
+    }
+
+    /* --- Service Single Page --- */
+    .section-printing-form.section-about-us .about-us-content h2{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .section-printing-form.section-about-us .about-us-content ul li{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .section-request-consultation h2{
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    /* --- Service Category Page --- */
+    .section-printer-category .intro-content{
+        font-size: 13px;
+        line-height: 20px;
+        padding-bottom: 24px;
+    }
+    .section-printer-category .category-image{
+        padding: 16px;
+    }
+    .section-printer-category .category-image img{
+        height: 150px;
+    }
+    .section-printer-category .section-contact-form h2{
+        font-size: 13px;
+        line-height: 20px;
+    }
+}
+
+/* ============================================================
+   EXTRA SMALL MOBILE (360px and below)
+   Covers the absolute smallest phones (320px Galaxy, etc.)
+   ============================================================ */
+@media screen and (max-width: 360px){
+    .header .main-logo img{
+        width: 85px;
+    }
+    .header p a{
+        font-size: 9px;
+    }
+    .section-slider h1{
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .section-slider .slider-sub-heading{
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .section-slider p{
+        font-size: 11px;
+    }
+    .section-slider a{
+        font-size: 10px;
+        padding: 12px 24px;
+    }
+    .banner-slider .slider-img img{
+        width: 160px;
+    }
+    .highlights-images{
+        height: 180px;
+    }
+    .section-popular-categories .col-md-4,
+    .section-popular-categories.section-new-products .col-md-4{
+        padding: 16px 12px!important;
+    }
+    .section-popular-categories img{
+        height: 150px;
+    }
+    .section-popular-categories h3{
+        font-size: 11px;
+        line-height: 16px;
+    }
+    .section-inner-page-banner h1{
+        font-size: 11px;
+        line-height: 18px;
+    }
+    .about-us-content h2{
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .about-us-content p,
+    .about-us-content ul li{
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .section-contact-info .contact-info-content h3{
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .section-contact-info .contact-info-content p{
+        font-size: 11px;
+        line-height: 18px;
+    }
+    .section-main-product .product-img img{
+        height: 200px;
+    }
+    .section-main-product h1{
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .section-main-product .main-product-content h2{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .section-detailed-description .table tr td{
+        font-size: 9px;
+        line-height: 13px;
+    }
+    .section-detailed-description .inquiry-box h2{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .section-related-products img{
+        height: 130px;
+    }
+    .product-filter .product-filter-heading{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .product-filter .accordion-button{
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .section-used-printer .section-popular-categories img{
+        height: 80px;
+    }
+    .section-printer-category .category-image img{
+        height: 120px;
+    }
+    .section-printing-form h2{
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .section-request-consultation h2{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .blue-btn-md{
+        font-size: 11px;
+        padding: 8px 16px;
+    }
+    .blue-btn-lg{
+        font-size: 11px;
+        padding: 14px 14px;
+    }
+    .btn-black{
+        font-size: 13px;
+        padding: 6px 20px;
+    }
+    input[type=text], select, textarea{
+        font-size: 12px;
+        padding: 6px 8px;
+        margin-bottom: 12px;
+    }
+}
