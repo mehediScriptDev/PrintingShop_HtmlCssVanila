@@ -113,6 +113,13 @@ body{
     line-height: 24px;
     margin-bottom: 16px;
 }
+/* Contact page canvas */
+.contact-page{
+    background-color: #e6e6e6;
+}
+.contact-page .main{
+    background-color: #ffffff;
+}
 h1, h2, h3, h4, h5, h6{
     font-family: "Open Sans", sans-serif;
     color: #000;
@@ -161,7 +168,7 @@ p:last-child{
 }
 .blue-btn-md{
     background-color: #115bbb;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 20px;
     color: #fff;
     padding: 10px 30px;
@@ -235,6 +242,100 @@ p:last-child{
 }
 .section-inner-page-banner h1 a:hover{
     text-decoration: underline;
+}
+
+/* Cartridge hero section - styled with Tailwind utilities (see contact-us.html) */
+.section-cartridge-hero .product-row{
+    display: flex;
+    gap: 22px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+.section-cartridge-hero .product-card{
+    background: #f1f1f1;
+    border-radius: 18px;
+    padding: 22px;
+    width: 260px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 12px solid #e9e9e9;
+    box-sizing: border-box;
+}
+.section-cartridge-hero .product-card img{
+    max-height: 90px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* Explicit hero gradient fallback — works without Tailwind binary (radial at top-left) */
+.hero-intro{
+    /* Hero: match reference image — centered card with radial highlight */
+    max-width: 720px;
+    width: calc(100% - 48px);
+    /* min-height: 140px; */
+    margin: 24px auto 28px;
+    padding: 28px 36px;
+    box-sizing: border-box;
+    /* border-radius: 12px; */
+    color: #222;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+    background-image: radial-gradient(circle at 10% 10%, #ffffff 0%, #dbdbdb 100%) !important;
+    background-color: #ffffff !important;
+    background-repeat: no-repeat !important;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+.section-cartridge-hero .product-card.featured{
+    transform: scale(1.02);
+}
+.contact-page .section-cartridge-hero{
+    padding-top: 36px;
+    padding-bottom: 24px;
+}
+.contact-page .section-cartridge-hero .product-row{
+    gap: 14px;
+}
+.contact-page .section-cartridge-hero .product-card{
+    width: 286px;
+    height: 142px;
+    padding: 14px;
+    border: 9px solid #d9d9d9;
+    border-radius: 14px;
+}
+.contact-page .section-cartridge-hero .product-card.featured{
+    width: 180px;
+    transform: none;
+}
+.contact-page .section-cartridge-hero .product-card img{
+    max-height: 84px;
+}
+.contact-page .section-cartridge-hero .product-card.featured img{
+    max-height: 112px;
+}
+.contact-page .section-cartridge-hero .section-divider{
+    max-width: 660px;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (max-width: 767.98px){
+    .section-cartridge-hero .product-card{
+        width: 46%;
+        margin-bottom: 12px;
+        height: auto;
+        padding: 18px;
+    }
+    .contact-page .section-cartridge-hero .product-card,
+    .contact-page .section-cartridge-hero .product-card.featured{
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+    }
 }
 
 /*Header CSS*/
@@ -706,7 +807,8 @@ p:last-child{
 
 /*Section Product Serach*/
 .section-product-search{
-  padding: 24px 0;
+    padding: 24px 0;
+    background-color: #ffffff;
 }
 .search-container{
   display: flex;
@@ -1358,6 +1460,108 @@ p:last-child{
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
+}
+.contact-page .section-contact-form.section-padding{
+    padding-top: 34px;
+    padding-bottom: 42px;
+}
+.contact-page .section-contact-form .contact-form{
+    /* Increase default contact form size (wider and taller) */
+    width: 68% !important;
+    max-width: 1100px;
+    min-width: 620px;
+    margin: 0 auto;
+    margin-right: auto;
+    padding: 28px 30px 22px;
+    border-radius: 12px;
+    background-color: #e4e4e4;
+    min-height: 580px;
+}
+.contact-page .section-contact-form .contact-form .row{
+    --bs-gutter-x: 16px;
+}
+.contact-page .section-contact-form label{
+    font-size: 14px;
+    line-height: 15px;
+    margin-bottom: 8px;
+}
+.contact-page .section-contact-form input[type=text],
+.contact-page .section-contact-form textarea{
+    border-radius: 20px;
+    border: 1px solid #111;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    background-color: #e9e9e9;
+    font-size: 14px;
+    line-height: 20px;
+}
+.contact-page .section-contact-form textarea{
+    border-radius: 14px;
+    min-height: 180px;
+}
+.contact-page .section-contact-form .contact-file-upload{
+    margin-bottom: 8px;
+}
+.contact-page .section-contact-form .contact-file-pill{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #111;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 15px;
+    line-height: 18px;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+.contact-page .section-contact-form .contact-file-pill input[type=file]{
+    display: none;
+}
+.contact-page .section-contact-form .contact-file-pill .file-plus{
+    font-size: 16px;
+    line-height: 16px;
+}
+.contact-page .section-contact-form .contact-consent-row{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    padding: 8px 0;
+}
+.contact-page .section-contact-form .contact-consent-row input[type=checkbox]{
+    margin: 0;
+    width: 12px;
+    height: 12px;
+}
+.contact-page .section-contact-form .contact-consent-row span{
+    font-size: 13px;
+    line-height: 13px;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+.contact-page .section-contact-form .contact-send-note{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.contact-page .section-contact-form .contact-send-note p{
+    font-size: 11px;
+    line-height: 14px;
+    margin-bottom: 0;
+    color: #111;
+    white-space: nowrap;
+}
+.contact-page .section-contact-form .contact-submit{
+    border-radius: 999px;
+    font-size: 14px !important;
+    line-height: 20px;
+    font-weight: 700;
+    padding: 8px 22px !important;
+    margin-top: 8px;
+}
+.contact-page .section-contact-form .text-center.mt-4.mb-4{
+    margin-top: 24px !important;
+    margin-bottom: 0 !important;
 }
 
 /* Product Page CSS */
@@ -2524,6 +2728,24 @@ p:last-child{
     .section-contact-form .contact-form{
         margin-right: 0;
         margin-bottom: 32px;
+    }
+    .contact-page .section-contact-form.section-padding{
+        padding-top: 24px;
+        padding-bottom: 28px;
+    }
+    .contact-page .section-contact-form .contact-form{
+        width: 100% !important;
+        min-width: 0;
+        padding: 16px;
+        margin-bottom: 18px;
+    }
+    .contact-page .section-contact-form .contact-send-note{
+        justify-content: flex-start;
+        margin: 4px 0 8px;
+    }
+    .contact-page .section-contact-form .contact-send-note p{
+        font-size: 14px;
+        line-height: 20px;
     }
     .section-map iframe{
         height: 300px;

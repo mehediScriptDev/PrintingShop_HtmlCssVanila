@@ -18,7 +18,123 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" /> 
+    <link href="css/style.css?v=3" rel="stylesheet" type="text/css" media="all" /> 
+    <link href="css/tailwind.css?v=3" rel="stylesheet" type="text/css" media="all" />
+    <style>
+      /* Inline fallback for hero gradient (applies last) */
+      .hero-intro {
+        background-image: radial-gradient(circle at 0% 0%, #ffffff 0%, #dbdbdb 100%) !important;
+        background-color: #ffffff !important;
+        background-repeat: no-repeat !important;
+      }
+
+      /* Wider content area for contact page sections (overrides other container rules) */
+      .section-cartridge-hero .container,
+      .section-contact-form .container,
+      .section-inner-page-banner .container,
+      .section-product-search .container {
+        max-width: 1200px !important;
+        width: calc(100% - 48px) !important;
+        margin: 0 auto !important;
+      }
+
+      /* Ensure product row and contact form align to the hero width */
+      .section-cartridge-hero .product-row,
+      .contact-form {
+        max-width: 1200px !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+      }
+
+      /* Scoped tweak: slightly enlarge the red-marked product row and form only on this page */
+      .section-cartridge-hero .product-row {
+        gap: 36px !important;
+        padding-top: 14px !important;
+        padding-bottom: 22px !important;
+      }
+
+      .section-cartridge-hero .product-card {
+        /* small increase so visuals are a bit bigger but overall averages stay same */
+        width: 320px !important;
+        height: 170px !important;
+        padding: 11px !important;
+        border-radius: 16px !important;
+      }
+
+      /* Make the contact form container a bit wider and slightly taller */
+      .section-contact-form .contact-form {
+        max-width: 1100px !important;
+        padding: 28px 30px 22px !important;
+      }
+
+      /* Featured (middle) product card: center, larger vertical image presentation */
+      .section-cartridge-hero .product-card.featured {
+        width: 280px !important;
+        height: 170px !important;
+        padding: 6px !important;
+        border-radius: 16px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      .section-cartridge-hero .product-card.featured img {
+        max-height: 140px !important;
+        max-width: 40% !important;
+        width: auto !important;
+        object-fit: contain !important;
+        display: block !important;
+        margin: 0 auto !important;
+      }
+
+      /* Ensure left and right cards have identical box size, middle (featured) is different */
+      .section-cartridge-hero .product-row {
+        display: flex !important;
+        gap: 36px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important;
+      }
+
+      .section-cartridge-hero .product-card:not(.featured) {
+        width: 360px !important;
+        height: 160px !important;
+        padding: 12px !important;
+        border-radius: 16px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      .section-cartridge-hero .product-card:not(.featured) img {
+        max-width: 100% !important;
+        max-height: 100% !important;
+        width: auto !important;
+        object-fit: contain !important;
+        display: block !important;
+        margin: 0 auto !important;
+      }
+
+      /* Mobile: allow wrapping and reset sizes so layout remains usable */
+      @media (max-width: 767.98px) {
+        .section-cartridge-hero .product-row {
+          flex-wrap: wrap !important;
+          gap: 18px !important;
+        }
+        .section-cartridge-hero .product-card,
+        .section-cartridge-hero .product-card.featured {
+          width: 100% !important;
+          max-width: 320px !important;
+          height: auto !important;
+          padding: 18px !important;
+        }
+        .section-cartridge-hero .product-card img,
+        .section-cartridge-hero .product-card.featured img {
+          max-height: 120px !important;
+          max-width: 100% !important;
+        }
+      }
+    </style>
     <!-- CSS -->
 
     <!-- FONTS -->
@@ -34,7 +150,7 @@
     <script type="text/javascript" src="js/custom.js"></script>
     <!-- Scripts -->
   </head>
-  <body>
+  <body class="contact-page">
 
     <!-- Header -->
     <header class="header">
@@ -92,17 +208,254 @@
     </header>
     <!-- Header -->
 
-    <!-- Banner -->
-    <section class="section-inner-page-banner">
+    <!-- All Categories -->
+    <section class="section-all-categories">
       <div class="container">
-        <h1 class="text-center">KONTAKTAI</h1>
+        <div class="all-categories-wrapper">
+          <div class="all-categories-heading">
+            VISOS KATEGORIJOS
+            <span
+              ><img
+                src="images/list.png"
+                width="18"
+                class="toggle-list"
+                alt="image"
+            /></span>
+          </div>
+
+          <div class="all-categories-menu">
+            <ul>
+              <li class="li-has-sub-menu">
+                <a href="#!"
+                  >BIURO ĮRANGA
+                  <span
+                    ><img
+                      src="images/right-arrow.png"
+                      width="8"
+                      alt="icon" /></span
+                ></a>
+                <div class="all-categories-sub-menu">
+                  <ul>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Plačiaformačiai skeneriai</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Dokumentų skeneriai</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Daugiafunkciniai spausdintuvai A4</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Daugiafunkciniai spausdintuvai A3</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Lazeriniai spausdintuvai</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Rašaliniai spausdintuvai</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Nešiojami spausdintuvai</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li><a href="#!">NAUDOTI SPAUSDINTUVAI</a></li>
+              <li><a href="#!">POPIERIUS SPAUSDINIMUI</a></li>
+              <li class="li-has-sub-menu">
+                <a href="#!"
+                  >SPAUSDINTUVAI A2, A1, A0, A0+
+                  <span
+                    ><img
+                      src="images/right-arrow.png"
+                      width="8"
+                      alt="icon" /></span
+                ></a>
+                <div class="all-categories-sub-menu">
+                  <ul>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Spausdintuvai A2 formato</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Spausdintuvai A1 formato</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Spausdintuvai A0 formato</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#!"
+                        ><span
+                          ><img
+                            src="images/right-arrow-narrow.png"
+                            width="12"
+                            alt="icon"
+                        /></span>
+                        Spausdintuvai A0+ formato</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li><a href="#!">SPAUSDINTUVŲ KASETĖS</a></li>
+              <li><a href="#!">EKOLOGIŠKI SPRENDIMAI</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search -->
+    <section class="section-product-search">
+      <div class="container">
+        <form>
+          <div class="search-container">
+            <input type="text" placeholder="PRODUKTŲ PAIEŠKA..." />
+            <select>
+              <option value="VISOS KATEGORIJOS">VISOS KATEGORIJOS</option>
+              <option>Visos kategorijos</option>
+              <option>Biuro įranga</option>
+              <option>Biuro popierius</option>
+              <option>Daugiafunkciniai spausdintuvai A3</option>
+              <option>Daugiafunkciniai spausdintuvai A4</option>
+              <option>Didelio formato spausdintuvai</option>
+              <option>Dokumentų skeneriai</option>
+              <option>Foto popierius</option>
+              <option>Gamybiniai spausdintuvai</option>
+              <option>Lazeriniai spausdintuvai</option>
+              <option>Naudoti spausdintuvai</option>
+              <option>Nešiojami spausdintuvai</option>
+              <option>Nuotraukų spausdintuvai</option>
+              <option>Plačiaformačiai skeneriai</option>
+              <option>Popierius brėžiniams</option>
+              <option>Popierius spausdinimui</option>
+              <option>Rašaliniai spausdintuvai</option>
+              <option>Ruloninis popierius</option>
+              <option>Spaudos įranga</option>
+              <option>Spausdintuvai A0 formato</option>
+              <option>Spausdintuvai A0+ formato</option>
+              <option>Spausdintuvai A1 formato</option>
+              <option>Spausdintuvai A2 formato</option>
+            </select>
+            <button class="blue-btn-md">IEŠKOTI</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- Search -->
+
+    <!-- Banner -->
+    <section class="section-inner-page-banner bg-[#f5f6f5]">
+      <div class="container">
+        <h1 class="text-center">SPAUSDINTUVŲ KASETĖS</h1>
       </div>
     </section>
     <!-- Banner -->
 
     <!-- Main -->
     <main class="main">
-      <section class="section-contact-info section-padding">
+      <section class="section-cartridge-hero section-padding">
+        <div class="container">
+          <div class="hero-intro">
+            <p class="mb-0">Mes galime pasiūlyti įvairaus tipo Canon toneris ir dažų kasetes jūsų spausdintuvui. Canon kasetes gauname tiesiai iš gamintojo, todėl galime pritaikyti vidutiniškai <strong>10%</strong> mažesnę kasečių kainą, nei vyraujančią rinkoje!</p>
+          </div>
+          <div class="product-row d-flex justify-content-center align-items-center flex-wrap">
+            <div class="product-card">
+              <img src="images/printer-cartridges/canon-C-EXV29.png" alt="Canon C-EXV29" />
+            </div>
+            <div class="product-card featured">
+              <img src="images/printer-cartridges/canon-4600-ink.png" alt="Canon 4600 Ink" />
+            </div>
+            <div class="product-card">
+              <img src="images/printer-cartridges/Canon-T12.png" alt="Canon T12" />
+            </div>
+          </div>
+          <div class="section-divider mt-4 mb-3"><hr></div>
+          <div class="text-center">
+            <p class="fw-bold max-w-sm">Parašykite kokios kasetės ar kokio spausdintuvo kasetės ieškote ir mes pateiksime geriausią pasiūlymą.</p>
+          </div>
+        </div>
+      </section>
+      <!-- <section class="section-contact-info section-padding">
         <div class="container">
           <h2>UAB ``Monokopa``</h2>
           <p>UAB „Monokopa“ – įmonė, įkurta 2003 metais, - padeda Jums pasirinkti ir eksploatuoti biuro techniką. Nuo pat įsikūrimo pradžios UAB „Monokopa“ yra oficialus įgaliotasis Canon atstovas Kaune. Įmonėje dirba tik patyrę ir mėgstantys savo darbą specialistai.</p>
@@ -171,15 +524,11 @@
         <div class="container">
           <iframe data-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4587.4149957572545!2d23.926048!3d54.908056!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e7189978008a13%3A0x6f0c10c41f896a7!2sSavanori%C5%B3+pr.+183%2C+Kaunas+50177!5e0!3m2!1sen!2slt!4v1552564447802" width="100%" height="450" frameborder="0" style="border: 0px; pointer-events: none;" allowfullscreen="" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4587.4149957572545!2d23.926048!3d54.908056!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e7189978008a13%3A0x6f0c10c41f896a7!2sSavanori%C5%B3+pr.+183%2C+Kaunas+50177!5e0!3m2!1sen!2slt!4v1552564447802" class=" lazyloaded" data-load-mode="1"></iframe>
         </div>
-      </section>
+      </section> -->
 
       <section class="section-contact-form section-padding">
         <div class="container">
-          <div class="seciton-head text-center">
-            <h2>Rašykite mums</h2>
-            <div class="divider"><img src="images/divider.png" width="80" alt="image" /></div>
-          </div>
-          <div class="contact-form w-75 m-auto">
+          <div class="contact-form m-auto">
             <form>
               <div class="row">
                 <div class="col-md-6">
@@ -206,18 +555,28 @@
                   <label>Jūsų žinutė</label>
                   <textarea rows="5"></textarea>
                 </div>
-                <div class="col-md-12">
-                  <label>Pridėkite PDF filą</label>
-                  <input type="file" name="">
-                </div>                
-                <div class="col-md-12">
-                  <input type="checkbox" name=""> <span>Perskaičiau ir sutinku su <strong>privatumo politika</strong></span>
+                <div class="col-md-12 contact-file-upload">
+                  <label class="contact-file-pill">
+                    <input type="file" name="attachment" accept=".pdf" />
+                    <span class="file-plus">+</span>
+                    Pridėti failą (pdf)
+                  </label>
                 </div>
+                <div class="col-md-6 col-12">
+                  <label class="contact-consent-row">
+                    <input type="checkbox" name="privacy" />
+                    <span>Perskaičiau ir sutinku su <strong>privatumo politika</strong></span>
+                  </label>
+                </div>
+                
                 <div class="col-md-12">
-                  <input type="submit" class="blue-btn-md mb-0" value="Siųsti" name="">
+                  <input type="submit" class="blue-btn-md mb-0 contact-submit" value="Siųsti" name="">
                 </div>
               </div>
             </form>
+          </div>
+          <div class="text-center mt-4 mb-4">
+            <img src="images/main-page/logo_01.png" alt="Canon logo" style="max-width:240px;width:100%;height:auto;" />
           </div>
         </div>
       </section>
