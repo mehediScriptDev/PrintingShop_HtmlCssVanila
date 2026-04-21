@@ -229,7 +229,10 @@ p:last-child{
 }
 .section-inner-page-banner{
     background-color: #f5f6f5;
-    padding: 40px 0;
+    /* thin white gaps above and below the banner (use borders for reliable rendering) */
+    border-top: 18px solid #fff;
+    border-bottom: 18px solid #fff;
+    padding: 28px 0;
 }
 .section-inner-page-banner h1{
     text-transform: uppercase;
@@ -3499,7 +3502,7 @@ p:last-child{
 
 /* Hero Section */
 .blog-hero-section {
-    padding: 0 0 80px;
+    padding: 0 0 40px;
 }
 
 .blog-hero-container {
@@ -3564,7 +3567,7 @@ p:last-child{
 }
 
 .blog-hero-content p {
-    font-size: 19px;
+    font-size: 21px;
     line-height: 1.5;
     color: #000;
     margin-bottom: 25px;
