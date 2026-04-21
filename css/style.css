@@ -301,23 +301,24 @@ p:last-child{
     /* show and animate into view from the right */
     display: block;
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(-50%) translateY(10px);
     pointer-events: auto;
     transition: transform 0.25s ease, opacity 0.25s ease;
 }
 .main-navigation .sub-menu{
     position: absolute;
     top: 36px;
-    left: 0;
+    left: 50%;
     right: auto;
     width: 560px;
+    max-width: calc(100vw - 40px);
     background-color: #000;
     z-index: 999;
     padding: 0 28px;
     /* visually start offset to the right, slide into its left-anchored position */
-        display: none;
+    display: none;
     opacity: 0;
-    transform: translateX(24px);
+    transform: translateX(-50%) translateY(-8px);
     pointer-events: none;
     transition: transform 0.25s ease, opacity 0.25s ease;
 }
@@ -677,6 +678,26 @@ p:last-child{
     background-color: transparent;
     border-radius: 0;
     padding: 0;
+}
+
+/* Desktop: collapse the categories panel by default; open when `.open` is added */
+@media screen and (min-width: 992px){
+    .all-categories-wrapper .all-categories-menu{
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: max-height 300ms ease, opacity 200ms ease, transform 250ms ease;
+        pointer-events: none;
+    }
+    .all-categories-wrapper.open .all-categories-menu{
+        max-height: 2000px;
+        opacity: 1;
+        transform: translateY(0);
+        overflow: visible;
+        pointer-events: auto;
+    }
+    .all-categories-heading{cursor:pointer}
 }
 .all-categories-sub-menu ul li a span img{
     padding-right: 2px;
