@@ -3584,8 +3584,8 @@ p:last-child{
     display: inline-flex;
     align-items: center;
     border: 1px solid #115bbb;
-    padding: 12px 30px;
-    margin-bottom: 50px;
+    padding: 2px 10px;
+    margin-bottom: 15px;
     margin-left: 50px; /* Space for chevron */
     position: relative;
 }
@@ -3618,11 +3618,56 @@ p:last-child{
     margin-bottom: 80px;
 }
 
+/* Operating cost section visual tune */
+.blog-gray-container-cost {
+    border-radius: 20px;
+    padding: 30px 42px 38px;
+}
+
+.blog-gray-container-cost .center-header {
+    margin: 0 auto 34px;
+}
+
+.blog-gray-container-cost .blog-section-header {
+    padding: 10px 28px;
+    margin-bottom: 0;
+}
+
+.blog-gray-container-cost .blog-content-visuals {
+    justify-content: flex-start;
+}
+
+.blog-gray-container-cost .printer-circle {
+    width: 330px;
+    height: 330px;
+}
+
+.blog-gray-container-cost p {
+    line-height: 1.45;
+    margin-bottom: 12px;
+}
+
+.blog-gray-container-cost p:last-child {
+    margin-bottom: 0;
+}
+
 .blog-content-body p {
-    font-size: 17px;
+    font-size: 21px;
     line-height: 1.6;
     color: #000;
     margin-bottom: 20px;
+}
+
+/* Checklist bullets (blog) */
+.blog-checklist {
+    padding-left: 20px;
+    font-size: 21px;
+}
+.blog-checklist li {
+    font-size: 21px;
+    line-height: 1.6;
+    color: #000;
+    margin-bottom: 12px;
 }
 
 .center-header {
@@ -3640,7 +3685,7 @@ p:last-child{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 3px;
 }
 
 .blog-content-visuals .printer-main {
@@ -3696,7 +3741,7 @@ p:last-child{
 }
 
 .blog-checklist li {
-    font-size: 17px;
+    font-size: 21px;
     line-height: 1.6;
     color: #000;
     margin-bottom: 12px;
@@ -3735,5 +3780,23 @@ p:last-child{
     .blog-section-header .chevron {
         position: static;
         margin-right: 15px;
+    }
+
+    .blog-gray-container-cost {
+        padding: 24px;
+    }
+
+    .blog-gray-container-cost .center-header {
+        margin-bottom: 24px;
+    }
+
+    .blog-gray-container-cost .blog-content-visuals {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .blog-gray-container-cost .printer-circle {
+        width: 260px;
+        height: 260px;
     }
 }
