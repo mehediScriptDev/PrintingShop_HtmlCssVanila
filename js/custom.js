@@ -24,18 +24,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
 $(document).ready(function () {
 	// Initialize Slick
+	// Initialize Slick
 	$('.banner-slider').slick({
 		dots: false,
 		arrows: true,
-		speed: 300,
+		speed: 0, // Instant slide jump so only our custom animations show
 		fade: true,
 		cssEase: 'linear',
-		slidesToShow: 1,
-		slidesToScroll: 1,
 		autoplay: true,
-		autoplaySpeed: 3000,
-		infinite: true
+		autoplaySpeed: 4500,
+		infinite: true,
+		pauseOnHover: false
+	}).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+		var $nextSlide = $(slick.$slides.get(nextSlide));
+		// Reset animations for the next slide so they can be re-triggered
+		$nextSlide.find('.slider-content').removeClass('animate-hero-text');
+		$nextSlide.find('.slider-img').removeClass('animate-hero-visuals');
+		$('.hero-bg-blink-layer').removeClass('animate-hero-bg');
+	}).on('afterChange', function(event, slick, currentSlide){
+		var $currentSlide = $(slick.$slides.get(currentSlide));
+		
+		// Forced reflow to ensure animations restart
+		var content = $currentSlide.find('.slider-content')[0];
+		var visuals = $currentSlide.find('.slider-img')[0];
+		var bg = $('.hero-bg-blink-layer')[0];
+		
+		if (content) { void content.offsetWidth; }
+		if (visuals) { void visuals.offsetWidth; }
+		if (bg) { void bg.offsetWidth; }
+
+		// Trigger animations for the current slide
+		$currentSlide.find('.slider-content').addClass('animate-hero-text');
+		$currentSlide.find('.slider-img').addClass('animate-hero-visuals');
+		$('.hero-bg-blink-layer').addClass('animate-hero-bg');
 	});
+
+	// Trigger animations on load for the first active slide
+	$('.banner-slider .slick-current .slider-content').addClass('animate-hero-text');
+	$('.banner-slider .slick-current .slider-img').addClass('animate-hero-visuals');
+	$('.hero-bg-blink-layer').addClass('animate-hero-bg');
 
 	$('.post-slider').slick({
 	  dots: false,
@@ -235,14 +262,29 @@ $(document).ready(function () {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      // Trigger when the element crosses the middle of the screen
       if (entry.isIntersecting) {
         const index = $(entry.target).data('index');
-        $images.removeClass('active').eq(index).addClass('active');
-        $infos.removeClass('dl-active').eq(index).addClass('dl-active');
+        
+        if (!$images.eq(index).hasClass('active')) {
+          $images.removeClass('active');
+          $infos.removeClass('dl-active');
+
+          const img = $images.eq(index)[0];
+          const info = $infos.eq(index)[0];
+
+          if (img) void img.offsetWidth;
+          if (info) void info.offsetWidth;
+
+          $images.eq(index).addClass('active');
+          $infos.eq(index).addClass('dl-active');
+        }
       }
     });
   }, {
-    threshold: 0.5
+    // Detect when the element passes the middle of the viewport
+    rootMargin: '-50% 0% -50% 0%',
+    threshold: 0
   });
 
   $('.highlight-trigger').each(function () {
@@ -257,17 +299,31 @@ $(function () {
       const $img = $(this);
       if ($img.attr('src')) return; // Already loaded
 
-      const scrollTop = $(window).scrollTop();
+      const rect = this.getBoundingClientRect();
       const windowHeight = $(window).height();
-      const imgTop = $img.offset().top;
-
-      if (imgTop < scrollTop + windowHeight + 100) {
-        $img.attr('src', $img.data('src')).addClass('loaded');
+      if (rect.top < windowHeight * 1.5 && rect.bottom > -windowHeight * 0.5) {
+        $img.attr('src', $img.data('src')).removeClass('lazy').addClass('loaded');
       }
     });
   }
 
   $(window).on('scroll resize', lazyLoad);
-  $(window).trigger('scroll'); // Load images in view on page load
-});
+  lazyLoad(); // Initial check
 
+  // Scroll Reveal Animations
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        $(entry.target).addClass('visible');
+        } else { $(entry.target).removeClass('visible');
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -80px 0px',
+    threshold: 0
+  });
+
+  $('.scroll-reveal').each(function() {
+    revealObserver.observe(this);
+  });
+});
