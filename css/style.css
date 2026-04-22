@@ -3674,6 +3674,190 @@ p:last-child {
   align-items: center;
   gap: 50px;
   min-height: 400px;
+  position: relative;
+  overflow: hidden; /* For background animation */
+}
+
+/* Hero Background Animation Container */
+.blog-hero-bg-animate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/Blog/Profile-Office-Canon-1.png'); /* Default premium bg */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15; /* Subtle background */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blog-hero-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Index Hero Animations */
+.section-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-blink-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/banner-bg.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.section-slider .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Default hidden state to prevent "double animation" flash */
+.banner-slider .slider-img,
+.banner-slider .slider-content {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+@keyframes heroVisualsSlide {
+  0% {
+    opacity: 0;
+    transform: translate(-100px, 100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes heroTextSlide {
+  0% {
+    opacity: 0;
+    transform: translate(100px, 100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes heroBgBlink {
+  0% {
+    transform: translateY(0);
+  }
+  49% {
+    transform: translateY(-100%);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  51% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-visuals {
+  opacity: 1 !important;
+  animation: heroVisualsSlide 1.2s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.animate-hero-text {
+  opacity: 1 !important;
+  animation: heroTextSlide 1.2s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.animate-hero-bg {
+  animation: heroBgBlink 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) both;
+}
+
+/* Slick adjustments for hero */
+.hero-slider {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.hero-slider .slick-list {
+  border-radius: 8px;
+  overflow: visible; /* Allow arrows to be seen if needed, but we'll keep them inside */
+}
+
+.hero-slider .slick-track {
+  display: flex !important;
+}
+
+.hero-slider .hero-slide-item {
+  height: inherit !important;
+}
+
+.hero-slider .slick-arrow {
+  z-index: 10;
+  width: 45px;
+  height: 45px;
+  background: #115bbb;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 2px solid #fff;
+}
+
+.hero-slider .slick-arrow:hover {
+  background: #0d4a96;
+  transform: scale(1.1);
+}
+
+.hero-slider .slick-prev {
+  left: 15px;
+}
+
+.hero-slider .slick-next {
+  right: 15px;
+}
+
+.hero-slider .slick-prev:before, .hero-slider .slick-next:before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 20px;
+  opacity: 1;
+  color: #fff;
+}
+
+.hero-slider .slick-prev:before {
+  content: '\f060';
+}
+
+.hero-slider .slick-next:before {
+  content: '\f061';
+}
+
+/* Responsive arrows */
+@media (max-width: 767.98px) {
+  .hero-slider .slick-arrow {
+    width: 35px;
+    height: 35px;
+  }
+  .hero-slider .slick-prev:before, .hero-slider .slick-next:before {
+    font-size: 16px;
+  }
+  .hero-slider .slick-prev {
+    left: 10px;
+  }
+  .hero-slider .slick-next {
+    right: 10px;
+  }
 }
 
 .blog-hero-visuals {
