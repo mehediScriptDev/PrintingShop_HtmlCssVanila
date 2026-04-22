@@ -299,17 +299,31 @@ $(function () {
       const $img = $(this);
       if ($img.attr('src')) return; // Already loaded
 
-      const scrollTop = $(window).scrollTop();
+      const rect = this.getBoundingClientRect();
       const windowHeight = $(window).height();
-      const imgTop = $img.offset().top;
-
-      if (imgTop < scrollTop + windowHeight + 100) {
-        $img.attr('src', $img.data('src')).addClass('loaded');
+      if (rect.top < windowHeight * 1.5 && rect.bottom > -windowHeight * 0.5) {
+        $img.attr('src', $img.data('src')).removeClass('lazy').addClass('loaded');
       }
     });
   }
 
   $(window).on('scroll resize', lazyLoad);
-  $(window).trigger('scroll'); // Load images in view on page load
-});
+  lazyLoad(); // Initial check
 
+  // Scroll Reveal Animations
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        $(entry.target).addClass('visible');
+        } else { $(entry.target).removeClass('visible');
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -80px 0px',
+    threshold: 0
+  });
+
+  $('.scroll-reveal').each(function() {
+    revealObserver.observe(this);
+  });
+});
