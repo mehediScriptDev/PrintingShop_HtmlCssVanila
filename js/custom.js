@@ -1,5 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
-	AOS.init();
+	var isBlogArticlePage = !!document.querySelector('.blog-article');
+
+	AOS.init({
+		disable: function () {
+			return isBlogArticlePage && window.innerWidth < 992;
+		}
+	});
+
+	if (isBlogArticlePage && window.innerWidth < 992) {
+		window.requestAnimationFrame(function () {
+			window.requestAnimationFrame(function () {
+				setTimeout(function () {
+					document.querySelectorAll('.blog-article [data-aos]').forEach(function (el) {
+						var delay = parseInt(el.getAttribute('data-aos-delay') || '0', 10);
+						el.style.setProperty('--blog-mobile-delay', delay + 'ms');
+						el.classList.add('blog-mobile-motion');
+					});
+				}, 60);
+			});
+		});
+	}
 });
 
 $(document).ready(function () {
