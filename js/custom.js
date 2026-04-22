@@ -262,14 +262,29 @@ $(document).ready(function () {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      // Trigger when the element crosses the middle of the screen
       if (entry.isIntersecting) {
         const index = $(entry.target).data('index');
-        $images.removeClass('active').eq(index).addClass('active');
-        $infos.removeClass('dl-active').eq(index).addClass('dl-active');
+        
+        if (!$images.eq(index).hasClass('active')) {
+          $images.removeClass('active');
+          $infos.removeClass('dl-active');
+
+          const img = $images.eq(index)[0];
+          const info = $infos.eq(index)[0];
+
+          if (img) void img.offsetWidth;
+          if (info) void info.offsetWidth;
+
+          $images.eq(index).addClass('active');
+          $infos.eq(index).addClass('dl-active');
+        }
       }
     });
   }, {
-    threshold: 0.5
+    // Detect when the element passes the middle of the viewport
+    rootMargin: '-50% 0% -50% 0%',
+    threshold: 0
   });
 
   $('.highlight-trigger').each(function () {

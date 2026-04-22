@@ -1045,29 +1045,43 @@ p:last-child {
   height: 100%;
   object-fit: contain;
   opacity: 0;
-  transform: translate(50%, -50%) scale(1.05);
+  transform: translate(-100%, 100%) scale(0.9);
   transition:
-    transform 0.5s ease-out,
-    opacity 0.5s ease-out;
+    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 0;
-  padding: 100px;
+  padding: 80px;
   padding-left: 0;
+  will-change: transform, opacity;
 }
 .highlights-image.active {
   opacity: 1;
   transform: translate(0, 0) scale(1);
   z-index: 1;
+  animation: highlightsImageIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes highlightsImageIn {
+  from {
+    opacity: 0;
+    transform: translate(-100%, 100%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
 }
 .highlights-infos-base {
   flex: 1 1 35%;
   padding: 40px;
   display: flex;
   align-items: center;
+  overflow: hidden; /* Clips the text so it enters from the bottom edge */
 }
 .highlights-info {
   display: none;
   border-left: 2px solid #000;
   padding: 16px 0 16px 40px;
+  will-change: transform, opacity;
 }
 .highlights-info p {
   font-size: 18px;
@@ -1075,12 +1089,12 @@ p:last-child {
 }
 .highlights-info.dl-active {
   display: block;
-  animation: fadeInUp 0.5s ease;
+  animation: highlightsTextUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-@keyframes fadeInUp {
+@keyframes highlightsTextUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(100px);
   }
   to {
     opacity: 1;
@@ -1088,7 +1102,59 @@ p:last-child {
   }
 }
 .highlight-trigger {
-  height: 100vh;
+  height: 40vh; /* Faster switching */
+}
+
+/* Mobile highlights: remove sticky-scroll storytelling layout to avoid large blank space */
+@media (max-width: 767.98px) {
+  .section-highlights {
+    padding: 28px 0;
+  }
+  .highlights-sticky {
+    position: relative;
+    top: auto;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+  .highlights-images {
+    position: relative;
+    min-height: 240px;
+    margin-bottom: 18px;
+  }
+  .highlights-image {
+    position: relative;
+    height: auto;
+    padding: 0;
+    opacity: 1;
+    transform: none;
+    transition: none;
+    display: none;
+  }
+  .highlights-image.active {
+    display: block;
+    animation: none;
+  }
+  .highlights-infos-base {
+    padding: 0;
+    overflow: visible;
+  }
+  .highlights-info {
+    display: none;
+    padding: 8px 0 0 16px;
+  }
+  .highlights-info p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .highlights-info.dl-active {
+    display: block;
+    animation: none;
+  }
+  .highlight-trigger,
+  .highlight-scroll-buffer {
+    display: none;
+  }
 }
 .dl-green-btn-hover {
   background-color: #4caf50;
@@ -3636,6 +3702,100 @@ p:last-child {
     font-size: 12px;
     padding: 6px 8px;
     margin-bottom: 12px;
+  }
+}
+
+/* ============================================================
+   HIGHLIGHTS MOBILE/TABLET SCROLL FIX
+   Restores compact scroll animation for 320px to md without
+   changing lg desktop visuals/behavior.
+   ============================================================ */
+@media screen and (max-width: 991px) {
+  .section-highlights {
+    padding-top: 32px;
+  }
+  .highlights-sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .highlights-images,
+  .highlights-infos-base {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .highlights-images {
+    position: relative;
+    height: min(42svh, 360px);
+    margin-bottom: 12px;
+  }
+  .highlights-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 12px;
+    opacity: 0;
+    transform: translate(-70%, 70%) scale(0.92);
+    transition:
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    display: block;
+  }
+  .highlights-image.active {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    animation: highlightsImageIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .highlights-infos-base {
+    padding: 8px 0 0;
+    align-items: flex-start;
+    overflow: hidden;
+  }
+  .highlights-info {
+    border-left: 2px solid #000;
+    padding: 8px 0 0 16px;
+    display: none;
+  }
+  .highlights-info p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .highlights-info.dl-active {
+    display: block;
+    animation: highlightsTextUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .highlight-trigger {
+    display: block !important;
+    height: 30vh;
+  }
+  .highlight-scroll-buffer {
+    display: block !important;
+    height: 24vh !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .highlights-images {
+    height: min(38svh, 300px);
+  }
+  .highlights-info {
+    padding: 4px 0 0 12px;
+  }
+  .highlights-info p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .highlight-trigger {
+    height: 24vh;
+  }
+  .highlight-scroll-buffer {
+    height: 20vh !important;
   }
 }
 
