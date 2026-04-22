@@ -159,6 +159,7 @@ p:last-child{
     width: 80px;
     height: auto;
 }
+/* blog section chevron styles are defined later; keep this area for general section headers */
 .lazy {
   filter: blur(5px);
   transition: filter 1s;
@@ -3600,7 +3601,7 @@ p:last-child{
 }
 
 .blog-section-header h2 {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 700;
     margin: 0;
     color: #000;
@@ -3688,6 +3689,90 @@ p:last-child{
     gap: 3px;
 }
 
+/* Tuning for the first blog section visuals to match design */
+.blog-visuals-center .blog-content-visuals {
+    justify-content: center;
+    gap: 2px;
+}
+
+/* Center the entire section with max-width */
+.blog-visuals-center .row {
+    max-width: 78rem;
+    margin: 48px auto 0;
+}
+.blog-visuals-center .blog-content-visuals .printer-main {
+    max-width: 360px;
+    height: auto;
+}
+.blog-visuals-center .blog-content-visuals .printer-circle {
+    width: 180px;
+    height: 180px;
+}
+.blog-visuals-center .blog-content-visuals .printer-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Center only the plotter section (do not affect other sections) */
+.blog-plotter-center .row {
+    max-width: 78rem;
+    margin: 48px auto 0;
+}
+
+/* Limit blog text blocks (header + left column) to Tailwind's max-w-3xl (48rem) */
+.blog-content-body .blog-section-header,
+.blog-content-body .col-lg-7,
+.blog-content-body .col-lg-8,
+.blog-gray-container .blog-section-header,
+.blog-gray-container .col-lg-8,
+.blog-gray-container-cost .blog-section-header,
+.blog-gray-container-cost .col-lg-8 {
+    max-width: 48rem;
+}
+
+/* Constrain the left column block that wraps header+text */
+.blog-visuals-center .left-block {
+    max-width: 80rem;
+}
+
+/* Make sure the header's chevron is visible when header is inside the left block */
+.blog-visuals-center .left-block .blog-section-header {
+    margin-left: 20px;
+}
+
+/* Reduce gap between chevron icon and title for this section only */
+.blog-visuals-center .left-block .blog-section-header .chevron {
+    left: -45px;
+}
+
+/* Force columns inside this blog section to 50/50 on large screens */
+@media (min-width: 992px) {
+    /* Reduce gap: make left column wider and bring images closer */
+    .blog-visuals-center .col-lg-7 {
+        flex: 0 0 58%;
+        max-width: 58%;
+        padding-right: 0;
+    }
+    .blog-visuals-center .col-lg-5 {
+        flex: 0 0 42%;
+        max-width: 42%;
+        padding-left: 0;
+    }
+    /* Align visuals to the left edge of the right column so they sit closer to text */
+    .blog-visuals-center .blog-content-visuals {
+        justify-content: flex-start;
+        gap: 0;
+    }
+    /* Nudge images even closer to eliminate residual whitespace (increased) */
+    .blog-visuals-center .printer-main {
+        margin-right: -36px;
+    }
+    .blog-visuals-center .printer-circle {
+        margin-left: -30px;
+    }
+}
+
 .blog-content-visuals .printer-main {
     max-width: 100%;
     height: auto;
@@ -3719,6 +3804,25 @@ p:last-child{
     align-items: center;
 }
 
+/* Plotter section — smaller images and vertical alignment inside right column */
+.blog-plotter-center .col-lg-5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.blog-plotter-center .plotter-visuals {
+    gap: 14px;
+    align-items: center;
+}
+.blog-plotter-center .plotter-visuals img {
+    max-width: 340px;
+    height: auto;
+    display: block;
+}
+.blog-plotter-center .plotter-visuals img:nth-child(2) {
+    max-width: 260px;
+}
+
 .right-header-container {
     display: flex;
     justify-content: flex-end;
@@ -3732,6 +3836,14 @@ p:last-child{
 .right-header-container .chevron {
     position: absolute;
     left: -60px;
+}
+
+/* Normalize chevron ↔ title gap across the blog page sections */
+.blog-article .blog-section-header {
+    margin-left: 40px !important;
+}
+.blog-article .blog-section-header .chevron {
+    left: -50px !important;
 }
 
 .blog-checklist {
