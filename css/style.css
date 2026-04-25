@@ -4197,6 +4197,22 @@ p:last-child {
   padding: 30px 42px 38px;
 }
 
+/* Remove background and padding when collapsed */
+.faq-section.is-collapsed .blog-gray-container,
+.faq-section.is-collapsed .blog-gray-container-cost {
+  background: transparent !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Reduce vertical spacing when collapsed */
+.faq-section.is-collapsed {
+  padding-bottom: 10px !important;
+}
+.faq-section.is-collapsed .faq-container {
+  margin-top: 10px !important;
+}
+
 .blog-gray-container-cost .center-header {
   margin: 0 auto 34px;
 }

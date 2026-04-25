@@ -168,6 +168,26 @@ $(document).ready(function () {
     $(this).find('.arrow').toggleClass('flipped');
   });
 
+  // Blog FAQ Accordion
+  $('.faq-header').css('cursor', 'pointer').click(function () {
+    var $faqSection = $(this).closest('.faq-section');
+    $(this).next('.faq-content').slideToggle({
+      duration: 300,
+      step: function() {
+        if (typeof AOS !== 'undefined') {
+          AOS.refresh();
+        }
+      },
+      complete: function() {
+        if (typeof AOS !== 'undefined') {
+          AOS.refresh();
+        }
+      }
+    });
+    $(this).find('.chevron i').toggleClass('fa-chevron-down fa-chevron-up');
+    $faqSection.toggleClass('is-collapsed');
+  });
+
   // Main Navigation 
 	$('.menu-icon').on('click', function() {
 	  $('.main-navigation ul').slideToggle(300);
