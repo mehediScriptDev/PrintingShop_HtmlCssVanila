@@ -1052,10 +1052,7 @@ p:last-child {
   height: 100%;
   object-fit: contain;
   opacity: 0;
-  transform: translate(-100%, 100%) scale(0.9);
-  transition:
-    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate(30%, 30%) scale(0.3);
   z-index: 0;
   padding: 80px;
   padding-left: 0;
@@ -1065,16 +1062,30 @@ p:last-child {
   opacity: 1;
   transform: translate(0, 0) scale(1);
   z-index: 1;
-  animation: highlightsImageIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: highlightsImageIn 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.highlights-image.exit-animation {
+  animation: highlightsImageOut 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  z-index: 0;
 }
 @keyframes highlightsImageIn {
   from {
     opacity: 0;
-    transform: translate(-100%, 100%) scale(0.9);
+    transform: translate(30%, 30%) scale(0.3);
   }
   to {
     opacity: 1;
     transform: translate(0, 0) scale(1);
+  }
+}
+@keyframes highlightsImageOut {
+  from {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(80%, -80%) scale(0.2);
   }
 }
 .highlights-infos-base {
@@ -1140,6 +1151,10 @@ p:last-child {
   }
   .highlights-image.active {
     display: block;
+    animation: none;
+  }
+  .highlights-image.exit-animation {
+    display: none;
     animation: none;
   }
   .highlights-infos-base {

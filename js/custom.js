@@ -289,6 +289,12 @@ $(document).ready(function () {
   const $images = $('.highlights-image');
   const $infos = $('.highlights-info');
 
+  // Initialize the first image and info as active immediately
+  if ($images.length > 0 && $infos.length > 0) {
+    $images.eq(0).addClass('active');
+    $infos.eq(0).addClass('dl-active');
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       // Trigger when the element crosses the middle of the screen
@@ -296,7 +302,16 @@ $(document).ready(function () {
         const index = $(entry.target).data('index');
         
         if (!$images.eq(index).hasClass('active')) {
-          $images.removeClass('active');
+          // Add exit animation to the current active image
+          const activeImg = $images.filter('.active');
+          if (activeImg.length) {
+            activeImg.addClass('exit-animation');
+            // Remove the exit animation class after animation completes
+            setTimeout(() => {
+              activeImg.removeClass('exit-animation active');
+            }, 1600);
+          }
+
           $infos.removeClass('dl-active');
 
           const img = $images.eq(index)[0];
