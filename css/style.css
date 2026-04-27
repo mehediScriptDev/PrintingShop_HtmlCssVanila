@@ -4094,6 +4094,12 @@ p:last-child {
   height: 320px;
 }
 
+.blog-hero-threegrid {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .hero-circle {
   position: absolute;
   border-radius: 50%;

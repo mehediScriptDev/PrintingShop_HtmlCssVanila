@@ -168,7 +168,16 @@ $(document).ready(function () {
     $(this).find('.arrow').toggleClass('flipped');
   });
 
-  // Blog FAQ Accordion
+  // Blog FAQ Accordion — collapsed by default
+  $('.faq-section').each(function () {
+    $(this).find('.faq-content').hide();
+    $(this).find('.chevron i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+    $(this).addClass('is-collapsed');
+  });
+  if (typeof AOS !== 'undefined') {
+    AOS.refresh();
+  }
+
   $('.faq-header').css('cursor', 'pointer').click(function () {
     var $faqSection = $(this).closest('.faq-section');
     $(this).next('.faq-content').slideToggle({
