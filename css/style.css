@@ -3875,6 +3875,52 @@ p:last-child {
   padding-bottom: 60px;
 }
 
+.blog-article .container {
+  max-width: 1270px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Add padding on lg devices */
+@media (min-width: 992px) {
+  .blog-article .container {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+  .blog-article .blog-content-body,
+  .blog-article .blog-hero-section {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+/* Adjust for 1024px devices */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .blog-article .container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .blog-article .blog-content-body,
+  .blog-article .blog-hero-section {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+/* Increase widths on XL devices (1200px+) */
+@media (min-width: 1200px) {
+  .blog-article .container {
+    max-width: 1320px;
+  }
+}
+
+/* Increase widths on 2XL devices (1536px+) */
+@media (min-width: 1536px) {
+  .blog-article .container {
+    max-width: 1400px;
+  }
+}
+
 /* Blog Title area */
 .blog-title-area {
   padding: 60px 0 40px;
@@ -4092,6 +4138,12 @@ p:last-child {
   flex: 0 0 450px;
   position: relative;
   height: 320px;
+}
+
+.blog-hero-threegrid {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .hero-circle {
