@@ -326,8 +326,8 @@ $(document).ready(function () {
       }
     });
   }, {
-    // Detect when the element passes the middle of the viewport
-    rootMargin: '-50% 0% -50% 0%',
+    // Detect when the element passes into view with generous top margin
+    rootMargin: '200px 0px -100px 0px',
     threshold: 0
   });
 
@@ -363,7 +363,7 @@ $(function () {
       }
     });
   }, {
-    rootMargin: '0px 0px -80px 0px',
+    rootMargin: '300px 0px 300px 0px',
     threshold: 0
   });
 
