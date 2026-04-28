@@ -295,33 +295,58 @@ $(document).ready(function () {
     $infos.eq(0).addClass('dl-active');
   }
 
+  // Track per-image exit timers to prevent race conditions on fast scroll
+  const exitTimers = new WeakMap();
+
+  // Centralized activator — handles enter animation, exit animation, and race conditions
+  function activateHighlight(index) {
+    const $newImg = $images.eq(index);
+    if (!$newImg.length || $newImg.hasClass('active')) return;
+
+    // Cancel any pending exit timers (prevents stripping 'active' from a re-activated image)
+    $images.each(function () {
+      const t = exitTimers.get(this);
+      if (t) {
+        clearTimeout(t);
+        exitTimers.delete(this);
+      }
+    });
+
+    // Mark currently active images as exiting (there may be more than one mid-transition)
+    const $exiting = $images.filter('.active').not($newImg);
+    $exiting.removeClass('active').addClass('exit-animation');
+    $exiting.each(function () {
+      const el = this;
+      const timer = setTimeout(() => {
+        $(el).removeClass('exit-animation');
+        exitTimers.delete(el);
+      }, 1600);
+      exitTimers.set(el, timer);
+    });
+
+    // Force reflow so the new image's enter-animation always plays from the start
+    $newImg.removeClass('exit-animation');
+    void $newImg[0].offsetWidth;
+    $newImg.addClass('active');
+
+    // Switch active info panel
+    $infos.removeClass('dl-active');
+    $infos.eq(index).addClass('dl-active');
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      // Trigger when the element crosses the middle of the screen
+      const index = $(entry.target).data('index');
+
       if (entry.isIntersecting) {
-        const index = $(entry.target).data('index');
-        
-        if (!$images.eq(index).hasClass('active')) {
-          // Add exit animation to the current active image
-          const activeImg = $images.filter('.active');
-          if (activeImg.length) {
-            activeImg.addClass('exit-animation');
-            // Remove the exit animation class after animation completes
-            setTimeout(() => {
-              activeImg.removeClass('exit-animation active');
-            }, 1600);
-          }
-
-          $infos.removeClass('dl-active');
-
-          const img = $images.eq(index)[0];
-          const info = $infos.eq(index)[0];
-
-          if (img) void img.offsetWidth;
-          if (info) void info.offsetWidth;
-
-          $images.eq(index).addClass('active');
-          $infos.eq(index).addClass('dl-active');
+        // Scrolling DOWN — trigger entered viewport zone, activate it
+        activateHighlight(index);
+      } else {
+        // Scrolling UP — when a trigger exits BELOW the viewport zone
+        // (boundingClientRect.top > 0 means it sits below the intersection root),
+        // user has scrolled back past it, so re-activate the previous trigger.
+        if (entry.boundingClientRect.top > 0 && index > 0) {
+          activateHighlight(index - 1);
         }
       }
     });
