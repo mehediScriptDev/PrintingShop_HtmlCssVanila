@@ -341,18 +341,30 @@ $(document).ready(function () {
   }
 
   const observer = new IntersectionObserver((entries) => {
+    // Split entries into entering (scroll-down) and exiting-downward (scroll-up)
+    const entering = [];
+    const exitingDown = [];
     entries.forEach(entry => {
-      const index = $(entry.target).data('index');
-
       if (entry.isIntersecting) {
-        // Scrolling DOWN — trigger entered viewport zone, activate it
-        activateHighlight(index);
-      } else {
-        // Scrolling UP — only respond when the LAST-ACTIVATED trigger exits
-        // This prevents multiple triggers from firing and ensures clean backtracking
-        if (entry.boundingClientRect.top > 0 && index === lastActivatedIndex && lastActivatedIndex > 0) {
-          activateHighlight(lastActivatedIndex - 1);
-        }
+        entering.push(entry);
+      } else if (entry.boundingClientRect.top > 0) {
+        exitingDown.push(entry);
+      }
+    });
+
+    // Scroll DOWN — process in ascending index order (so lastActivatedIndex climbs naturally)
+    entering.sort((a, b) => $(a.target).data('index') - $(b.target).data('index'));
+    entering.forEach(entry => {
+      activateHighlight($(entry.target).data('index'));
+    });
+
+    // Scroll UP — process in descending index order (so lastActivatedIndex steps down one at a time)
+    exitingDown.sort((a, b) => $(b.target).data('index') - $(a.target).data('index'));
+    exitingDown.forEach(entry => {
+      const index = $(entry.target).data('index');
+      // Only respond when the LAST-ACTIVATED trigger exits — guarantees clean retrace
+      if (index === lastActivatedIndex && lastActivatedIndex > 0) {
+        activateHighlight(lastActivatedIndex - 1);
       }
     });
   }, {
@@ -363,7 +375,7 @@ $(document).ready(function () {
 
   $('.highlight-trigger').each(function () {
     observer.observe(this);
-  });  
+  });
 
 });
 
