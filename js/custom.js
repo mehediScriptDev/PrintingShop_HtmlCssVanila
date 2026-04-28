@@ -297,6 +297,9 @@ $(document).ready(function () {
 
   // Track per-image exit timers to prevent race conditions on fast scroll
   const exitTimers = new WeakMap();
+  
+  // Track the last-activated index during scroll-down to handle scroll-up cleanly
+  let lastActivatedIndex = 0;
 
   // Centralized activator — handles enter animation, exit animation, and race conditions
   function activateHighlight(index) {
@@ -332,6 +335,9 @@ $(document).ready(function () {
     // Switch active info panel
     $infos.removeClass('dl-active');
     $infos.eq(index).addClass('dl-active');
+    
+    // Update last-activated index for scroll-up logic
+    lastActivatedIndex = index;
   }
 
   const observer = new IntersectionObserver((entries) => {
@@ -342,11 +348,10 @@ $(document).ready(function () {
         // Scrolling DOWN — trigger entered viewport zone, activate it
         activateHighlight(index);
       } else {
-        // Scrolling UP — when a trigger exits BELOW the viewport zone
-        // (boundingClientRect.top > 0 means it sits below the intersection root),
-        // user has scrolled back past it, so re-activate the previous trigger.
-        if (entry.boundingClientRect.top > 0 && index > 0) {
-          activateHighlight(index - 1);
+        // Scrolling UP — only respond when the LAST-ACTIVATED trigger exits
+        // This prevents multiple triggers from firing and ensures clean backtracking
+        if (entry.boundingClientRect.top > 0 && index === lastActivatedIndex && lastActivatedIndex > 0) {
+          activateHighlight(lastActivatedIndex - 1);
         }
       }
     });
