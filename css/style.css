@@ -1426,7 +1426,24 @@ p:last-child {
   border-bottom-right-radius: 15px;
 }
 
+
+/* Responsive adjustments for 1024px devices - User requested more horizontal margin (mx) */
+@media (min-width: 1024px) and (max-width: 1199.98px) {
+  .section-popular-categories .container,
+  .section-new-products .container,
+  .section-service-list .container-fluid {
+    max-width: 880px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .section-service-list .container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 /*Section Posts CSS*/
+
 .section-post {
   background-position: center;
   background-size: cover;
