@@ -387,7 +387,7 @@ $(function () {
 
       const rect = this.getBoundingClientRect();
       const windowHeight = $(window).height();
-      if (rect.top < windowHeight * 1.5 && rect.bottom > -windowHeight * 0.5) {
+      if (rect.top < windowHeight * 1.1 && rect.bottom > -windowHeight * 0.1) {
         $img.attr('src', $img.data('src')).removeClass('lazy').addClass('loaded');
       }
     });
@@ -405,8 +405,8 @@ $(function () {
       }
     });
   }, {
-    rootMargin: '300px 0px 300px 0px',
-    threshold: 0
+    rootMargin: '0px 0px -150px 0px',
+    threshold: 0.1
   });
 
   $('.scroll-reveal').each(function() {
