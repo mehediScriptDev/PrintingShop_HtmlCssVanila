@@ -4966,3 +4966,21 @@ p:last-child {
     max-width: 180px;
   }
 }
+
+@media (min-width: 992px) {
+  .section-popular-categories .container {
+    max-width: 860px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section-popular-categories .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .section-popular-categories .container {
+    max-width: 1160px;
+  }
+}
